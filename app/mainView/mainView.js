@@ -13,35 +13,69 @@ angular.module('myApp.mainView', ['ngRoute'])
     }])
 
     .controller('MainViewCtrl', ['$scope', function($scope) {
-        $scope.listStr = "cat,dog";
+        $scope.listAdd = '';
+        $scope.listRemove = '';
+        $scope.listArr = [];
+
+        $scope.addToList =function (item){
+          $scope.listArr.push(item);
+        };
+
+        $scope.removeFromList =function (item){
+            var removeIdx = $scope.listArr.indexOf(item);
+            if (removeIdx != -1){
+                $scope.listArr.splice(removeIdx, 1);
+            }
+        };
+
+        $scope.changeInList =function (){
+            $scope.listArr[1] = "foo";
+        };
     }])
     .directive('myListDir', function() {
         function link(scope, element, attrs){
 
-            function updateList(value){
-                var oldUl = document.getElementById("myListUl");
-                if ( oldUl ) {
-                    element[0].removeChild(oldUl);
-                }
-                var ul = document.createElement("ul");
-                ul.setAttribute("id", "myListUl");
-                value.split(',').forEach(function(item){
-                    var li = document.createElement("li");
-                    li.appendChild(document.createTextNode(item));
-                    element[0].appendChild(ul);
-                    ul.appendChild(li);
-                });
-            };
+            function addList(item, index){
+                var ul = document.getElementById("myListUl");
+                var li = document.createElement("li");
+                li.setAttribute("id", "li" + index);
+                li.appendChild(document.createTextNode(item));
+                ul.appendChild(li);
+            }
 
-            scope.$watch('myListDir', function(value){
-                updateList(value)
-            }, true);
+            function updateList(item, index){
+                var li = document.getElementById("li" +  index);
+                li.innerHTML = item;
+            }
+
+            function removeList(index){
+                var ul = document.getElementById("myListUl");
+                var li = document.getElementById("li" + index);
+                ul.removeChild(li);
+            }
+
+            scope.$watchCollection('listarr', function(newValues, oldValues){
+                newValues.forEach(function (item, index) {
+                    if (index < oldValues.length && item != oldValues[index]) {
+                        updateList(item, index);
+                    }
+                    else if (index >= oldValues.length) {
+                        addList(item, index);
+                    }
+                });
+
+                for (var removeIdx = newValues.length; removeIdx < oldValues.length; removeIdx++) {
+                    removeList(removeIdx);
+                }
+
+            });
         }
         return {
-            restrict: 'A',
+            restrict: 'E',
             scope:{
-                myListDir: '@'
+                listarr: '='
             },
+            template: "<div id='myListDiv'><ul id='myListUl'></ul></div>",
             link: link
         };
     });
