@@ -34,141 +34,95 @@ angular.module('myApp.mapView', ['ngRoute'])
                 $scope.mapOpt.zoom = $scope.zoom;
                 $scope.map = new google.maps.Map(document.getElementById('map'), $scope.mapOpt);
 
-                this.addMarker = function (scope){
-                    var options = scope.markerOpt;
+                this.addObject = function (scope, type){
+                    var options = scope.options;
+                    var newObject;
                     if (!options){
                         options = {};
                     }
-                    options.position = scope.position;
-                    options.map = $scope.map;
-                    if (scope.draggable){
-                        options.draggable = scope.draggable;
-                    }
-                    if (scope.icon){
-                        options.icon = scope.icon;
-                    }
 
-                    var newMarker = new google.maps.Marker(options);
-
-                    if (scope.info){
-                        var infoWindow = new google.maps.InfoWindow({
-                            content: scope.info
-                        });
-                        newMarker.addListener('click', function(){
-                            infoWindow.open($scope.map, newMarker);
-                        })
-                    }
-                };
-
-                this.addPolyline = function (scope){
-                    var options = scope.polylineOpt;
-                    if (!options){
-                        options = {};
-                    }
-                    options.path = scope.path;
                     options.map = $scope.map;
 
-                    if (scope.color){
-                        options.strokeColor = scope.color;
-                    }
-                    if (scope.width){
-                        options.strokeWeight = scope.width;
-                    }
-                    if (scope.opacity){
-                        options.strokeOpacity = scope.opacity;
-                    }
-
-                    var newLine = new google.maps.Polyline(options);
-                };
-
-                this.addPolygon = function (scope){
-                    var options = scope.polygonOpt;
-                    if (!options){
-                        options = {};
-                    }
-                    options.paths = scope.paths;
-                    options.map = $scope.map;
-
-                    if (scope.fillColor){
-                        options.fillColor = scope.fillColor;
-                    }
-                    if (scope.fillOpacity){
-                        options.fillOpacity = scope.fillOpacity;
-                    }
-                    if (scope.lineColor){
-                        options.strokeColor = scope.lineColor;
-                    }
-                    if (scope.lineWidth){
-                        options.strokeWeight = scope.lineWidth;
-                    }
-                    if (scope.lineOpacity){
-                        options.strokeOpacity = scope.lineOpacity;
+                    if (["polygon", "circle", "rectangle"].indexOf(type) > -1){
+                        if (scope.fillColor){
+                            options.fillColor = scope.fillColor;
+                        }
+                        if (scope.fillOpacity){
+                            options.fillOpacity = scope.fillOpacity;
+                        }
+                        if (scope.lineColor){
+                            options.strokeColor = scope.lineColor;
+                        }
+                        if (scope.lineWidth){
+                            options.strokeWeight = scope.lineWidth;
+                        }
+                        if (scope.lineOpacity){
+                            options.strokeOpacity = scope.lineOpacity;
+                        }
                     }
 
-                    var newLine = new google.maps.Polygon(options);
-                };
+                    switch (type){
+                        case "circle":
+                            options.center = scope.center;
+                            options.radius = scope.radius;
+                            newObject = new google.maps.Circle(options);
+                            break;
 
-                this.addRectangle = function (scope){
-                    var options = scope.rectangleOpt;
-                    if (!options){
-                        options = {};
-                    }
-                    options.bounds = scope.bounds;
-                    options.map = $scope.map;
+                        case "marker":
+                            options.position = scope.position;
+                            if (scope.draggable){
+                                options.draggable = scope.draggable;
+                            }
+                            if (scope.icon){
+                                options.icon = scope.icon;
+                            }
+                            newObject = new google.maps.Marker(options);
 
-                    if (scope.fillColor){
-                        options.fillColor = scope.fillColor;
-                    }
-                    if (scope.fillOpacity){
-                        options.fillOpacity = scope.fillOpacity;
-                    }
-                    if (scope.lineColor){
-                        options.strokeColor = scope.lineColor;
-                    }
-                    if (scope.lineWidth){
-                        options.strokeWeight = scope.lineWidth;
-                    }
-                    if (scope.lineOpacity){
-                        options.strokeOpacity = scope.lineOpacity;
-                    }
+                            if (scope.info){
+                                var infoWindow = new google.maps.InfoWindow({
+                                    content: scope.info
+                                });
+                                newObject.addListener('click', function(){
+                                    infoWindow.open($scope.map, newObject);
+                                })
+                            }
+                            break;
 
-                    var newLine = new google.maps.Rectangle(options);
-                };
+                        case "polyline":
+                            options.path = scope.path;
+                            if (scope.color){
+                                options.strokeColor = scope.color;
+                            }
+                            if (scope.width){
+                                options.strokeWeight = scope.width;
+                            }
+                            if (scope.opacity){
+                                options.strokeOpacity = scope.opacity;
+                            }
+                            newObject = new google.maps.Polyline(options);
+                            break;
 
-                this.addCircle = function (scope){
-                    var options = scope.circleOpt;
-                    if (!options){
-                        options = {};
-                    }
-                    options.center = scope.center;
-                    options.radius = scope.radius;
-                    options.map = $scope.map;
+                        case "polygon":
+                            options.paths = scope.paths;
+                            newObject = new google.maps.Polygon(options);
+                            break;
 
-                    if (scope.fillColor){
-                        options.fillColor = scope.fillColor;
-                    }
-                    if (scope.fillOpacity){
-                        options.fillOpacity = scope.fillOpacity;
-                    }
-                    if (scope.lineColor){
-                        options.strokeColor = scope.lineColor;
-                    }
-                    if (scope.lineWidth){
-                        options.strokeWeight = scope.lineWidth;
-                    }
-                    if (scope.lineOpacity){
-                        options.strokeOpacity = scope.lineOpacity;
-                    }
+                        case "rectangle":
+                            options.bounds = scope.bounds;
+                            newObject = new google.maps.Rectangle(options);
+                            break;
 
-                    var newLine = new google.maps.Circle(options);
-                };
+                        default:
+                            console.error("Unknown shape type");
+                    }
+                }
             }],
             template: "<div id='map'></div><div ng-transclude></div>"
         };
     })
     .directive('myMarker', function(){
         function link(scope, element, attrs, mapCtrl) {
-            mapCtrl.addMarker(scope);
+            mapCtrl.addObject(scope, "marker");
         }
         return {
             require: '^myMap',
@@ -185,7 +139,7 @@ angular.module('myApp.mapView', ['ngRoute'])
     })
     .directive('myPolyline', function(){
         function link(scope, element, attrs, mapCtrl) {
-            mapCtrl.addPolyline(scope);
+            mapCtrl.addObject(scope, "polyline");
         }
         return {
             require: '^myMap',
@@ -195,14 +149,14 @@ angular.module('myApp.mapView', ['ngRoute'])
                 color: '=',
                 width: '=',
                 opacity: '=',
-                polylineOpt: '='
+                options: '='
             },
             link: link
         }
     })
     .directive('myPolygon', function(){
         function link(scope, element, attrs, mapCtrl) {
-            mapCtrl.addPolygon(scope);
+            mapCtrl.addObject(scope, "polygon");
         }
         return {
             require: '^myMap',
@@ -214,14 +168,14 @@ angular.module('myApp.mapView', ['ngRoute'])
                 lineWidth: '=',
                 lineColor: '=',
                 lineOpacity: '=',
-                polygonOpt: '='
+                options: '='
             },
             link: link
         }
     })
     .directive('myRectangle', function(){
         function link(scope, element, attrs, mapCtrl) {
-            mapCtrl.addRectangle(scope);
+            mapCtrl.addObject(scope, "rectangle");
         }
         return {
             require: '^myMap',
@@ -233,14 +187,14 @@ angular.module('myApp.mapView', ['ngRoute'])
                 lineWidth: '=',
                 lineColor: '=',
                 lineOpacity: '=',
-                rectangleOpt: '='
+                options: '='
             },
             link: link
         }
     })
     .directive('myCircle', function(){
         function link(scope, element, attrs, mapCtrl) {
-            mapCtrl.addCircle(scope);
+            mapCtrl.addObject(scope, "circle");
         }
         return {
             require: '^myMap',
@@ -253,8 +207,137 @@ angular.module('myApp.mapView', ['ngRoute'])
                 lineWidth: '=',
                 lineColor: '=',
                 lineOpacity: '=',
-                circleOpt: '='
+                options: '='
             },
             link: link
         }
     });
+
+// this.addMarker = function (scope){
+//     // var options = scope.markerOpt;
+//     // if (!options){
+//     //     options = {};
+//     // }
+//     // options.position = scope.position;
+//     // options.map = $scope.map;
+//     // if (scope.draggable){
+//     //     options.draggable = scope.draggable;
+//     // }
+//     // if (scope.icon){
+//     //     options.icon = scope.icon;
+//     // }
+//     //
+//     // var newMarker = new google.maps.Marker(options);
+//
+//     if (scope.info){
+//         var infoWindow = new google.maps.InfoWindow({
+//             content: scope.info
+//         });
+//         newMarker.addListener('click', function(){
+//             infoWindow.open($scope.map, newMarker);
+//         })
+//     }
+// };
+
+// this.addPolyline = function (scope){
+//     var options = scope.polylineOpt;
+//     if (!options){
+//         options = {};
+//     }
+//     options.path = scope.path;
+//     options.map = $scope.map;
+//
+//     if (scope.color){
+//         options.strokeColor = scope.color;
+//     }
+//     if (scope.width){
+//         options.strokeWeight = scope.width;
+//     }
+//     if (scope.opacity){
+//         options.strokeOpacity = scope.opacity;
+//     }
+//
+//     var newLine = new google.maps.Polyline(options);
+// };
+
+// this.addPolygon = function (scope){
+//     var options = scope.polygonOpt;
+//     if (!options){
+//         options = {};
+//     }
+//     options.paths = scope.paths;
+//     options.map = $scope.map;
+//
+//     if (scope.fillColor){
+//         options.fillColor = scope.fillColor;
+//     }
+//     if (scope.fillOpacity){
+//         options.fillOpacity = scope.fillOpacity;
+//     }
+//     if (scope.lineColor){
+//         options.strokeColor = scope.lineColor;
+//     }
+//     if (scope.lineWidth){
+//         options.strokeWeight = scope.lineWidth;
+//     }
+//     if (scope.lineOpacity){
+//         options.strokeOpacity = scope.lineOpacity;
+//     }
+//
+//     var newLine = new google.maps.Polygon(options);
+// };
+
+// this.addRectangle = function (scope){
+//     var options = scope.rectangleOpt;
+//     if (!options){
+//         options = {};
+//     }
+//     options.bounds = scope.bounds;
+//     options.map = $scope.map;
+//
+//     if (scope.fillColor){
+//         options.fillColor = scope.fillColor;
+//     }
+//     if (scope.fillOpacity){
+//         options.fillOpacity = scope.fillOpacity;
+//     }
+//     if (scope.lineColor){
+//         options.strokeColor = scope.lineColor;
+//     }
+//     if (scope.lineWidth){
+//         options.strokeWeight = scope.lineWidth;
+//     }
+//     if (scope.lineOpacity){
+//         options.strokeOpacity = scope.lineOpacity;
+//     }
+//
+//     var newLine = new google.maps.Rectangle(options);
+// };
+
+// this.addCircle = function (scope){
+//     var options = scope.circleOpt;
+//     if (!options){
+//         options = {};
+//     }
+//     options.center = scope.center;
+//     options.radius = scope.radius;
+//     options.map = $scope.map;
+//
+//     // if (scope.fillColor){
+//     //     options.fillColor = scope.fillColor;
+//     // }
+//     // if (scope.fillOpacity){
+//     //     options.fillOpacity = scope.fillOpacity;
+//     // }
+//     // if (scope.lineColor){
+//     //     options.strokeColor = scope.lineColor;
+//     // }
+//     // if (scope.lineWidth){
+//     //     options.strokeWeight = scope.lineWidth;
+//     // }
+//     // if (scope.lineOpacity){
+//     //     options.strokeOpacity = scope.lineOpacity;
+//     // }
+//
+//     var newLine = new google.maps.Circle(options);
+// };
