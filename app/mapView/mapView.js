@@ -132,7 +132,7 @@ angular.module('myApp.mapView', ['ngRoute'])
                 draggable: '=',
                 icon: '=',
                 info: '=',
-                markerOpt: '='
+                options: '='
             },
             link: link
         };
@@ -212,6 +212,9 @@ angular.module('myApp.mapView', ['ngRoute'])
             link: link
         }
     });
+
+
+// This was the duplicated code
 
 // this.addMarker = function (scope){
 //     // var options = scope.markerOpt;
