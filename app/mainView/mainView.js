@@ -55,19 +55,20 @@ angular.module('myApp.mainView', ['ngRoute'])
             }
 
             scope.$watchCollection('listarr', function(newValues, oldValues){
-                newValues.forEach(function (item, index) {
-                    if (index < oldValues.length && item != oldValues[index]) {
-                        updateList(item, index);
-                    }
-                    else if (index >= oldValues.length) {
-                        addList(item, index);
-                    }
-                });
+                if (newValues && oldValues) {
+                    newValues.forEach(function (item, index) {
+                        if (index < oldValues.length && item != oldValues[index]) {
+                            updateList(item, index);
+                        }
+                        else if (index >= oldValues.length) {
+                            addList(item, index);
+                        }
+                    });
 
-                for (var removeIdx = newValues.length; removeIdx < oldValues.length; removeIdx++) {
-                    removeList(removeIdx);
+                    for (var removeIdx = newValues.length; removeIdx < oldValues.length; removeIdx++) {
+                        removeList(removeIdx);
+                    }
                 }
-
             });
         }
         return {

@@ -1,0 +1,1517 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for app\Google-Maps\googleMaps.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../prettify.css" />
+    <link rel="stylesheet" href="../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../index.html">all files</a> / <a href="index.html">app/Google-Maps/</a> googleMaps.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">25.74% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>61/237</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">15.09% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>16/106</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">27.27% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>15/55</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">25.74% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>61/237</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347
+348
+349
+350
+351
+352
+353
+354
+355
+356
+357
+358
+359
+360
+361
+362
+363
+364
+365
+366
+367
+368
+369
+370
+371
+372
+373
+374
+375
+376
+377
+378
+379
+380
+381
+382
+383
+384
+385
+386
+387
+388
+389
+390
+391
+392
+393
+394
+395
+396
+397
+398
+399
+400
+401
+402
+403
+404
+405
+406
+407
+408
+409
+410
+411
+412
+413
+414
+415
+416
+417
+418
+419
+420
+421
+422
+423
+424
+425
+426
+427
+428
+429
+430
+431
+432
+433
+434
+435
+436
+437
+438
+439
+440
+441
+442
+443
+444
+445
+446
+447
+448
+449
+450
+451
+452
+453
+454
+455
+456
+457
+458
+459
+460
+461
+462
+463
+464
+465
+466
+467
+468
+469
+470
+471
+472
+473
+474
+475
+476
+477
+478
+479
+480
+481
+482
+483
+484
+485</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">angular.module('Google-Maps', [])
+    .directive('myMap', function(){
+        function link(scope, element, attrs, ctrl) {
+            scope.$watch('center', function (newVal, oldVal){
+                console.log("Map: center watch fired");
+                <span class="missing-if-branch" title="if path not taken" >I</span>if (newVal != oldVal){
+<span class="cstat-no" title="statement not covered" >                    scope.map.setCenter(newVal);</span>
+                }
+            });
+&nbsp;
+            scope.$watch('zoom', function (newVal, oldVal){
+                console.log("Map: zoom watch fired");
+                <span class="missing-if-branch" title="if path not taken" >I</span>if (newVal != oldVal){
+<span class="cstat-no" title="statement not covered" >                    scope.map.setZoom(newVal);</span>
+                }
+            });
+&nbsp;
+            scope.$watch('mapOpt', function (newVal, oldVal){
+                console.log("Map: mapOpt watch fired");
+                <span class="missing-if-branch" title="if path not taken" >I</span>if (newVal != oldVal){
+<span class="cstat-no" title="statement not covered" >                    var prevCenter = scope.map.getCenter();</span>
+<span class="cstat-no" title="statement not covered" >                    newVal.center = { lat: prevCenter.lat(), lng: prevCenter.lng() };</span>
+<span class="cstat-no" title="statement not covered" >                    newVal.zoom = scope.map.getZoom();</span>
+<span class="cstat-no" title="statement not covered" >                    scope.map.setOptions(newVal);</span>
+                }
+            });
+        }
+        return {
+            restrict: 'E',
+            scope: {
+                mapOpt: '=?',
+                center: '=',
+                zoom: '='
+            },
+            transclude: true,
+            link: link,
+            controller: ['$scope', '$rootScope', function myMapController($scope, $rootScope){
+                <span class="missing-if-branch" title="if path not taken" >I</span>if (!$scope.mapOpt){
+<span class="cstat-no" title="statement not covered" >                    $scope.mapOpt = {};</span>
+                }
+                $scope.mapOpt.center = $scope.center;
+                $scope.mapOpt.zoom = $scope.zoom;
+                $scope.map = new google.maps.Map(document.getElementById('map'), $scope.mapOpt);
+                $rootScope.map = $scope.map;
+&nbsp;
+                this.addObject = function (scope, type){
+                    var options = scope.options;
+                    var newObject;
+                    <span class="missing-if-branch" title="else path not taken" >E</span>if (!options){
+                        options = {};
+                    }
+&nbsp;
+                    options.map = $scope.map;
+&nbsp;
+                    <span class="missing-if-branch" title="if path not taken" >I</span>if (["polygon", "circle", "rectangle"].indexOf(type) &gt; -1){
+<span class="cstat-no" title="statement not covered" >                        if (scope.fillColor){</span>
+<span class="cstat-no" title="statement not covered" >                            options.fillColor = scope.fillColor;</span>
+                        }
+<span class="cstat-no" title="statement not covered" >                        if (scope.fillOpacity){</span>
+<span class="cstat-no" title="statement not covered" >                            options.fillOpacity = scope.fillOpacity;</span>
+                        }
+<span class="cstat-no" title="statement not covered" >                        if (scope.lineColor){</span>
+<span class="cstat-no" title="statement not covered" >                            options.strokeColor = scope.lineColor;</span>
+                        }
+<span class="cstat-no" title="statement not covered" >                        if (scope.lineWidth){</span>
+<span class="cstat-no" title="statement not covered" >                            options.strokeWeight = scope.lineWidth;</span>
+                        }
+<span class="cstat-no" title="statement not covered" >                        if (scope.lineOpacity){</span>
+<span class="cstat-no" title="statement not covered" >                            options.strokeOpacity = scope.lineOpacity;</span>
+                        }
+                    }
+&nbsp;
+                    switch (type){
+<span class="branch-0 cbranch-no" title="branch not covered" >                        case "circle":</span>
+<span class="cstat-no" title="statement not covered" >                            options.center = scope.center;</span>
+<span class="cstat-no" title="statement not covered" >                            options.radius = scope.radius;</span>
+<span class="cstat-no" title="statement not covered" >                            newObject = new google.maps.Circle(options);</span>
+<span class="cstat-no" title="statement not covered" >                            break;</span>
+&nbsp;
+                        case "marker":
+                            options.position = scope.position;
+                            <span class="missing-if-branch" title="else path not taken" >E</span>if (scope.draggable){
+                                options.draggable = scope.draggable;
+                            }
+                            <span class="missing-if-branch" title="if path not taken" >I</span>if (scope.icon){
+<span class="cstat-no" title="statement not covered" >                                options.icon = scope.icon;</span>
+                            }
+                            <span class="missing-if-branch" title="else path not taken" >E</span>if (scope.info) {
+                                var infoWindow = new google.maps.InfoWindow({
+                                    content: scope.info
+                                });
+                                options._infoWin = infoWindow;
+                            }
+                            newObject = new google.maps.Marker(options);
+&nbsp;
+                            <span class="missing-if-branch" title="else path not taken" >E</span>if (scope.info){
+                                newObject.addListener('click', <span class="fstat-no" title="function not covered" >function(){</span>
+<span class="cstat-no" title="statement not covered" >                                    infoWindow.open($scope.map, newObject);</span>
+                                });
+                            }
+                            break;
+&nbsp;
+<span class="branch-2 cbranch-no" title="branch not covered" >                        case "polyline":</span>
+<span class="cstat-no" title="statement not covered" >                            options.path = scope.path;</span>
+<span class="cstat-no" title="statement not covered" >                            if (scope.color){</span>
+<span class="cstat-no" title="statement not covered" >                                options.strokeColor = scope.color;</span>
+                            }
+<span class="cstat-no" title="statement not covered" >                            if (scope.width){</span>
+<span class="cstat-no" title="statement not covered" >                                options.strokeWeight = scope.width;</span>
+                            }
+<span class="cstat-no" title="statement not covered" >                            if (scope.opacity){</span>
+<span class="cstat-no" title="statement not covered" >                                options.strokeOpacity = scope.opacity;</span>
+                            }
+<span class="cstat-no" title="statement not covered" >                            newObject = new google.maps.Polyline(options);</span>
+<span class="cstat-no" title="statement not covered" >                            break;</span>
+&nbsp;
+<span class="branch-3 cbranch-no" title="branch not covered" >                        case "polygon":</span>
+<span class="cstat-no" title="statement not covered" >                            options.paths = scope.paths;</span>
+<span class="cstat-no" title="statement not covered" >                            newObject = new google.maps.Polygon(options);</span>
+<span class="cstat-no" title="statement not covered" >                            break;</span>
+&nbsp;
+<span class="branch-4 cbranch-no" title="branch not covered" >                        case "rectangle":</span>
+<span class="cstat-no" title="statement not covered" >                            options.bounds = scope.bounds;</span>
+<span class="cstat-no" title="statement not covered" >                            newObject = new google.maps.Rectangle(options);</span>
+<span class="cstat-no" title="statement not covered" >                            break;</span>
+&nbsp;
+<span class="branch-5 cbranch-no" title="branch not covered" >                        default:</span>
+<span class="cstat-no" title="statement not covered" >                            console.error("Unknown shape type");</span>
+                    }
+                    return newObject;
+                }
+            }],
+            template: "&lt;div id='map'&gt;&lt;/div&gt;&lt;div ng-transclude&gt;&lt;/div&gt;"
+        };
+    })
+    .directive('myMarker', function(){
+        function link(scope, element, attrs, mapCtrl) {
+            scope.marker = mapCtrl.addObject(scope, "marker");
+&nbsp;
+            scope.$watch('position', function (newVal, oldVal){
+                console.log("Marker: position watch fired");
+                <span class="missing-if-branch" title="if path not taken" >I</span>if (newVal != oldVal){
+<span class="cstat-no" title="statement not covered" >                    scope.marker.setPosition(newVal);</span>
+                }
+            });
+&nbsp;
+            scope.$watch('draggable', function (newVal, oldVal){
+                console.log("Marker: draggable watch fired");
+                <span class="missing-if-branch" title="if path not taken" >I</span>if (newVal != oldVal){
+<span class="cstat-no" title="statement not covered" >                    scope.marker.setDraggable(newVal);</span>
+&nbsp;
+                }
+            });
+&nbsp;
+            scope.$watch('icon', function (newVal, oldVal){
+                console.log("Marker: icon watch fired");
+                <span class="missing-if-branch" title="if path not taken" >I</span>if (newVal != oldVal){
+<span class="cstat-no" title="statement not covered" >                    scope.marker.setIcon(newVal);</span>
+                }
+            });
+&nbsp;
+            scope.$watch('info', function (newVal, oldVal){
+                <span class="missing-if-branch" title="if path not taken" >I</span>if (newVal != oldVal){
+<span class="cstat-no" title="statement not covered" >                    scope.marker._infoWin.setContent(newVal);</span>
+&nbsp;
+                }
+            });
+&nbsp;
+            scope.$watch('options', function (newVal, oldVal){
+                console.log("Marker: markerOpt watch fired");
+                <span class="missing-if-branch" title="if path not taken" >I</span>if (newVal != oldVal){
+<span class="cstat-no" title="statement not covered" >                    newVal.position = scope.marker.getPosition();</span>
+<span class="cstat-no" title="statement not covered" >                    newVal.draggable = scope.marker.getDraggable();</span>
+<span class="cstat-no" title="statement not covered" >                    newVal.icon = scope.marker.getIcon();</span>
+<span class="cstat-no" title="statement not covered" >                    scope.marker.setOptions(newVal);</span>
+                }
+            });
+&nbsp;
+            scope.$on('$destroy', function() {
+                console.log("Destroy Marker");
+                scope.marker.setMap(null);
+            });
+        }
+        return {
+            require: '^myMap',
+            restrict: 'E',
+            scope:{
+                position: '=',
+                draggable: '=?',
+                icon: '=?',
+                info: '=?',
+                options: '=?'
+            },
+            link: link
+        };
+    })
+    .directive('myPolyline', <span class="fstat-no" title="function not covered" >function(){</span>
+<span class="fstat-no" title="function not covered" >        function link(scope, element, attrs, mapCtrl) {</span>
+<span class="cstat-no" title="statement not covered" >            scope.polyline = mapCtrl.addObject(scope, "polyline");</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            scope.$watch('path', <span class="fstat-no" title="function not covered" >function (newVal, oldVal){</span></span>
+<span class="cstat-no" title="statement not covered" >                console.log("Polyline: path watch fired");</span>
+<span class="cstat-no" title="statement not covered" >                if (newVal != oldVal){</span>
+<span class="cstat-no" title="statement not covered" >                    scope.polyline.setPath(newVal);</span>
+                }
+            });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            scope.$watch('color', <span class="fstat-no" title="function not covered" >function (newVal, oldVal){</span></span>
+<span class="cstat-no" title="statement not covered" >                console.log("Polyline: strokecolor watch fired");</span>
+<span class="cstat-no" title="statement not covered" >                if (newVal != oldVal){</span>
+<span class="cstat-no" title="statement not covered" >                    scope.polyline.setOptions({strokeColor: newVal});</span>
+&nbsp;
+                }
+            });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            scope.$watch('width', <span class="fstat-no" title="function not covered" >function (newVal, oldVal){</span></span>
+<span class="cstat-no" title="statement not covered" >                console.log("PolyLine: width watch fired");</span>
+<span class="cstat-no" title="statement not covered" >                if (newVal != oldVal){</span>
+<span class="cstat-no" title="statement not covered" >                    scope.polyline.setOptions({strokeWeight: newVal});</span>
+                }
+            });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            scope.$watch('opacity', <span class="fstat-no" title="function not covered" >function (newVal, oldVal){</span></span>
+<span class="cstat-no" title="statement not covered" >                console.log("PolyLine: opacity watch fired");</span>
+<span class="cstat-no" title="statement not covered" >                if (newVal != oldVal){</span>
+<span class="cstat-no" title="statement not covered" >                    scope.polyline.setOptions({strokeOpacity: newVal});</span>
+                }
+            });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            scope.$watch('options', <span class="fstat-no" title="function not covered" >function (newVal, oldVal){</span></span>
+<span class="cstat-no" title="statement not covered" >                console.log("PolyLine: options watch fired");</span>
+<span class="cstat-no" title="statement not covered" >                console.log(newVal, oldVal);</span>
+<span class="cstat-no" title="statement not covered" >                if (newVal != oldVal){</span>
+<span class="cstat-no" title="statement not covered" >                    scope.polyline.setOptions(newVal);</span>
+                }
+            });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            scope.$on('$destroy', <span class="fstat-no" title="function not covered" >function() {</span></span>
+<span class="cstat-no" title="statement not covered" >                console.log("Destroy PolyLine");</span>
+<span class="cstat-no" title="statement not covered" >                scope.polyline.setMap(null);</span>
+            });
+        }
+<span class="cstat-no" title="statement not covered" >        return {</span>
+            require: '^myMap',
+            restrict: 'E',
+            scope:{
+                path: '=',
+                color: '=?',
+                width: '=?',
+                opacity: '=?',
+                options: '=?'
+            },
+            link: link
+        }
+    })
+    .directive('myPolygon', <span class="fstat-no" title="function not covered" >function(){</span>
+<span class="fstat-no" title="function not covered" >        function link(scope, element, attrs, mapCtrl) {</span>
+<span class="cstat-no" title="statement not covered" >            scope.polygon = mapCtrl.addObject(scope, "polygon");</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            scope.$watch('paths', <span class="fstat-no" title="function not covered" >function (newVal, oldVal){</span></span>
+<span class="cstat-no" title="statement not covered" >                console.log("Polygon: paths watch fired");</span>
+<span class="cstat-no" title="statement not covered" >                if (newVal != oldVal){</span>
+<span class="cstat-no" title="statement not covered" >                    scope.polygon.setPath(newVal);</span>
+                }
+            });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            scope.$watch('fillColor', <span class="fstat-no" title="function not covered" >function (newVal, oldVal){</span></span>
+<span class="cstat-no" title="statement not covered" >                console.log("Polygon: fillColor watch fired");</span>
+<span class="cstat-no" title="statement not covered" >                if (newVal != oldVal){</span>
+<span class="cstat-no" title="statement not covered" >                    scope.polygon.setOptions({fillColor: newVal});</span>
+&nbsp;
+                }
+            });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            scope.$watch('fillOpacity', <span class="fstat-no" title="function not covered" >function (newVal, oldVal){</span></span>
+<span class="cstat-no" title="statement not covered" >                console.log("Polygon: fillOpacity watch fired");</span>
+<span class="cstat-no" title="statement not covered" >                if (newVal != oldVal){</span>
+<span class="cstat-no" title="statement not covered" >                    scope.polygon.setOptions({fillOpacity: newVal});</span>
+                }
+            });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            scope.$watch('lineWidth', <span class="fstat-no" title="function not covered" >function (newVal, oldVal){</span></span>
+<span class="cstat-no" title="statement not covered" >                console.log("Polygon: lineWidth watch fired");</span>
+<span class="cstat-no" title="statement not covered" >                if (newVal != oldVal){</span>
+<span class="cstat-no" title="statement not covered" >                    scope.polygon.setOptions({strokeWeight: newVal});</span>
+                }
+            });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            scope.$watch('lineColor', <span class="fstat-no" title="function not covered" >function (newVal, oldVal){</span></span>
+<span class="cstat-no" title="statement not covered" >                console.log("Polygon: lineColor watch fired");</span>
+<span class="cstat-no" title="statement not covered" >                if (newVal != oldVal){</span>
+<span class="cstat-no" title="statement not covered" >                    scope.polygon.setOptions({strokeColor: newVal});</span>
+                }
+            });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            scope.$watch('lineOpacity', <span class="fstat-no" title="function not covered" >function (newVal, oldVal){</span></span>
+<span class="cstat-no" title="statement not covered" >                console.log("Polygon: lineOpacity watch fired");</span>
+<span class="cstat-no" title="statement not covered" >                if (newVal != oldVal){</span>
+<span class="cstat-no" title="statement not covered" >                    scope.polygon.setOptions({strokeOpacity: newVal});</span>
+                }
+            });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            scope.$watch('options', <span class="fstat-no" title="function not covered" >function (newVal, oldVal){</span></span>
+<span class="cstat-no" title="statement not covered" >                console.log("Polygon: options watch fired");</span>
+<span class="cstat-no" title="statement not covered" >                if (newVal != oldVal){</span>
+<span class="cstat-no" title="statement not covered" >                    scope.polygon.setOptions(newVal);</span>
+                }
+            });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            scope.$on('$destroy', <span class="fstat-no" title="function not covered" >function() {</span></span>
+<span class="cstat-no" title="statement not covered" >                console.log("Destroy Polygon");</span>
+<span class="cstat-no" title="statement not covered" >                scope.polygon.setMap(null);</span>
+            });
+        }
+<span class="cstat-no" title="statement not covered" >        return {</span>
+            require: '^myMap',
+            restrict: 'E',
+            scope:{
+                paths: '=',
+                fillColor: '=?',
+                fillOpacity: '=?',
+                lineWidth: '=?',
+                lineColor: '=?',
+                lineOpacity: '=?',
+                options: '=?'
+            },
+            link: link
+        }
+    })
+    .directive('myRectangle', <span class="fstat-no" title="function not covered" >function(){</span>
+<span class="fstat-no" title="function not covered" >        function link(scope, element, attrs, mapCtrl) {</span>
+<span class="cstat-no" title="statement not covered" >            scope.rectangle = mapCtrl.addObject(scope, "rectangle");</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            scope.$watch('bounds', <span class="fstat-no" title="function not covered" >function (newVal, oldVal){</span></span>
+<span class="cstat-no" title="statement not covered" >                console.log("Rectangle: bounds watch fired");</span>
+<span class="cstat-no" title="statement not covered" >                if (newVal != oldVal){</span>
+<span class="cstat-no" title="statement not covered" >                    scope.rectangle.setBounds(newVal);</span>
+                }
+            });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            scope.$watch('fillColor', <span class="fstat-no" title="function not covered" >function (newVal, oldVal){</span></span>
+<span class="cstat-no" title="statement not covered" >                console.log("Rectangle: fillColor watch fired");</span>
+<span class="cstat-no" title="statement not covered" >                if (newVal != oldVal){</span>
+<span class="cstat-no" title="statement not covered" >                    scope.rectangle.setOptions({fillColor: newVal});</span>
+&nbsp;
+                }
+            });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            scope.$watch('fillOpacity', <span class="fstat-no" title="function not covered" >function (newVal, oldVal){</span></span>
+<span class="cstat-no" title="statement not covered" >                console.log("Rectangle: fillOpacity watch fired");</span>
+<span class="cstat-no" title="statement not covered" >                if (newVal != oldVal){</span>
+<span class="cstat-no" title="statement not covered" >                    scope.rectangle.setOptions({fillOpacity: newVal});</span>
+                }
+            });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            scope.$watch('lineWidth', <span class="fstat-no" title="function not covered" >function (newVal, oldVal){</span></span>
+<span class="cstat-no" title="statement not covered" >                console.log("Rectangle: lineWidth watch fired");</span>
+<span class="cstat-no" title="statement not covered" >                if (newVal != oldVal){</span>
+<span class="cstat-no" title="statement not covered" >                    scope.rectangle.setOptions({strokeWeight: newVal});</span>
+                }
+            });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            scope.$watch('lineColor', <span class="fstat-no" title="function not covered" >function (newVal, oldVal){</span></span>
+<span class="cstat-no" title="statement not covered" >                console.log("Rectangle: lineColor watch fired");</span>
+<span class="cstat-no" title="statement not covered" >                if (newVal != oldVal){</span>
+<span class="cstat-no" title="statement not covered" >                    scope.rectangle.setOptions({strokeColor: newVal});</span>
+                }
+            });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            scope.$watch('lineOpacity', <span class="fstat-no" title="function not covered" >function (newVal, oldVal){</span></span>
+<span class="cstat-no" title="statement not covered" >                console.log("Rectangle: lineOpacity watch fired");</span>
+<span class="cstat-no" title="statement not covered" >                if (newVal != oldVal){</span>
+<span class="cstat-no" title="statement not covered" >                    scope.rectangle.setOptions({strokeOpacity: newVal});</span>
+                }
+            });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            scope.$watch('options', <span class="fstat-no" title="function not covered" >function (newVal, oldVal){</span></span>
+<span class="cstat-no" title="statement not covered" >                console.log("Rectangle: options watch fired");</span>
+<span class="cstat-no" title="statement not covered" >                if (newVal != oldVal){</span>
+<span class="cstat-no" title="statement not covered" >                    scope.rectangle.setOptions(newVal);</span>
+                }
+            });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            scope.$on('$destroy', <span class="fstat-no" title="function not covered" >function() {</span></span>
+<span class="cstat-no" title="statement not covered" >                console.log("Destroy Rectangle");</span>
+<span class="cstat-no" title="statement not covered" >                scope.rectangle.setMap(null);</span>
+            });
+        }
+<span class="cstat-no" title="statement not covered" >        return {</span>
+            require: '^myMap',
+            restrict: 'E',
+            scope:{
+                bounds: '=',
+                fillColor: '=?',
+                fillOpacity: '=?',
+                lineWidth: '=?',
+                lineColor: '=?',
+                lineOpacity: '=?',
+                options: '=?'
+            },
+            link: link
+        }
+    })
+    .directive('myCircle', <span class="fstat-no" title="function not covered" >function(){</span>
+<span class="fstat-no" title="function not covered" >        function link(scope, element, attrs, mapCtrl) {</span>
+<span class="cstat-no" title="statement not covered" >            scope.circle = mapCtrl.addObject(scope, "circle");</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            scope.$watch('center', <span class="fstat-no" title="function not covered" >function (newVal, oldVal){</span></span>
+<span class="cstat-no" title="statement not covered" >                console.log("Circle: center watch fired");</span>
+<span class="cstat-no" title="statement not covered" >                if (newVal != oldVal){</span>
+<span class="cstat-no" title="statement not covered" >                    scope.circle.setCenter(newVal);</span>
+                }
+            });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            scope.$watch('radius', <span class="fstat-no" title="function not covered" >function (newVal, oldVal){</span></span>
+<span class="cstat-no" title="statement not covered" >                console.log("Circle: radius watch fired");</span>
+<span class="cstat-no" title="statement not covered" >                if (newVal != oldVal){</span>
+<span class="cstat-no" title="statement not covered" >                    scope.circle.setRadius(newVal);</span>
+                }
+            });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            scope.$watch('fillColor', <span class="fstat-no" title="function not covered" >function (newVal, oldVal){</span></span>
+<span class="cstat-no" title="statement not covered" >                console.log("Circle: fillColor watch fired");</span>
+<span class="cstat-no" title="statement not covered" >                if (newVal != oldVal){</span>
+<span class="cstat-no" title="statement not covered" >                    scope.circle.setOptions({fillColor: newVal});</span>
+&nbsp;
+                }
+            });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            scope.$watch('fillOpacity', <span class="fstat-no" title="function not covered" >function (newVal, oldVal){</span></span>
+<span class="cstat-no" title="statement not covered" >                console.log("Circle: fillOpacity watch fired");</span>
+<span class="cstat-no" title="statement not covered" >                if (newVal != oldVal){</span>
+<span class="cstat-no" title="statement not covered" >                    scope.circle.setOptions({fillOpacity: newVal});</span>
+                }
+            });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            scope.$watch('lineWidth', <span class="fstat-no" title="function not covered" >function (newVal, oldVal){</span></span>
+<span class="cstat-no" title="statement not covered" >                console.log("Circle: lineWidth watch fired");</span>
+<span class="cstat-no" title="statement not covered" >                if (newVal != oldVal){</span>
+<span class="cstat-no" title="statement not covered" >                    scope.circle.setOptions({strokeWeight: newVal});</span>
+                }
+            });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            scope.$watch('lineColor', <span class="fstat-no" title="function not covered" >function (newVal, oldVal){</span></span>
+<span class="cstat-no" title="statement not covered" >                console.log("Circle: lineColor watch fired");</span>
+<span class="cstat-no" title="statement not covered" >                if (newVal != oldVal){</span>
+<span class="cstat-no" title="statement not covered" >                    scope.circle.setOptions({strokeColor: newVal});</span>
+                }
+            });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            scope.$watch('lineOpacity', <span class="fstat-no" title="function not covered" >function (newVal, oldVal){</span></span>
+<span class="cstat-no" title="statement not covered" >                console.log("Circle: lineOpacity watch fired");</span>
+<span class="cstat-no" title="statement not covered" >                if (newVal != oldVal){</span>
+<span class="cstat-no" title="statement not covered" >                    scope.circle.setOptions({strokeOpacity: newVal});</span>
+                }
+            });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            scope.$watch('options', <span class="fstat-no" title="function not covered" >function (newVal, oldVal){</span></span>
+<span class="cstat-no" title="statement not covered" >                console.log("Circle: options watch fired");</span>
+<span class="cstat-no" title="statement not covered" >                if (newVal != oldVal){</span>
+<span class="cstat-no" title="statement not covered" >                    scope.circle.setOptions(newVal);</span>
+                }
+            });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            scope.$on('$destroy', <span class="fstat-no" title="function not covered" >function() {</span></span>
+<span class="cstat-no" title="statement not covered" >                console.log("Destroy Circle");</span>
+<span class="cstat-no" title="statement not covered" >                scope.circle.setMap(null);</span>
+            });
+        }
+<span class="cstat-no" title="statement not covered" >        return {</span>
+            require: '^myMap',
+            restrict: 'E',
+            scope:{
+                center: '=',
+                radius: '=',
+                fillColor: '=?',
+                fillOpacity: '=?',
+                lineWidth: '=?',
+                lineColor: '=?',
+                lineOpacity: '=?',
+                options: '=?'
+            },
+            link: link
+        }
+    });</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Tue Feb 07 2017 18:14:31 GMT-0800 (Pacific Standard Time)
+</div>
+</div>
+<script src="../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../sorter.js"></script>
+</body>
+</html>

@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for app\mapView\mapView.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../prettify.css" />
+    <link rel="stylesheet" href="../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../index.html">all files</a> / <a href="index.html">app/mapView/</a> mapView.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">6.67% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>2/30</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/0</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">25% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>1/4</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">6.67% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>2/30</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">angular.module('myApp.mapView', ['ngRoute', 'Google-Maps'])
+&nbsp;
+    .config(['$routeProvider', function($routeProvider) {
+        $routeProvider.when('/mapView', {
+            templateUrl: 'mapView/mapView.html',
+            controller: 'MapViewCtrl'
+        });
+    }])
+&nbsp;
+    .controller('MapViewCtrl', ['$scope', <span class="fstat-no" title="function not covered" >function($scope) {</span>
+<span class="cstat-no" title="statement not covered" >        $scope.mapPos = {lat: 32.880951, lng: -117.233827};</span>
+&nbsp;
+        // Map Initial Options
+<span class="cstat-no" title="statement not covered" >        $scope.center = $scope.mapPos;</span>
+<span class="cstat-no" title="statement not covered" >        $scope.zoom = 13;</span>
+<span class="cstat-no" title="statement not covered" >        $scope.mapOpt = {backgroundColor: "black"};</span>
+&nbsp;
+        // Marker Initial Options
+<span class="cstat-no" title="statement not covered" >        $scope.markerPos = $scope.mapPos;</span>
+<span class="cstat-no" title="statement not covered" >        $scope.draggable = true;</span>
+&nbsp;
+        // Line Initial Options
+<span class="cstat-no" title="statement not covered" >        $scope.line = [$scope.mapPos, {lat: 32.886325, lng: -117.239278 }];</span>
+&nbsp;
+        // Triangle Initial Options
+<span class="cstat-no" title="statement not covered" >        $scope.triangle = [$scope.mapPos, {lat: 32.877880, lng: -117.237214 }, {lat: 32.875468, lng: -117.232348 }];</span>
+&nbsp;
+        // Rectangle Initial Options
+<span class="cstat-no" title="statement not covered" >        $scope.rectangle = {north: 32.882937, south: 32.878531, east: -117.222145, west: -117.225922};</span>
+&nbsp;
+        // Map New Options
+<span class="cstat-no" title="statement not covered" >        $scope.newCenter = {lat: 32.880951, lng: -117.250000};</span>
+<span class="cstat-no" title="statement not covered" >        $scope.newZoom = 9;</span>
+<span class="cstat-no" title="statement not covered" >        $scope.newOpt = {draggable: false};</span>
+&nbsp;
+        // Marker New Options
+<span class="cstat-no" title="statement not covered" >        $scope.newMarkerPos = $scope.newCenter;</span>
+<span class="cstat-no" title="statement not covered" >        $scope.newMarkerIcon = 'http://image.flaticon.com/icons/png/128/91/91484.png';</span>
+<span class="cstat-no" title="statement not covered" >        $scope.newMarkerOpt = {opacity: 0.5};</span>
+&nbsp;
+        // Polyline New Options
+<span class="cstat-no" title="statement not covered" >        $scope.newLine = [$scope.mapPos, {lat: 32.886325, lng: -117.239278 }, $scope.newCenter];</span>
+<span class="cstat-no" title="statement not covered" >        $scope.newShapeOpt = {visible: false};</span>
+&nbsp;
+        // Polygon New Options
+<span class="cstat-no" title="statement not covered" >        $scope.newTriangle = [$scope.mapPos, {lat: 32.877880, lng: -117.237214 }, $scope.newCenter];</span>
+&nbsp;
+        // Rectange New Options
+<span class="cstat-no" title="statement not covered" >        $scope.newRectangle = {north: 32.882937, south: 32.878531, east: -117.222145, west: -117.239278};</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        $scope.changeAttribute = <span class="fstat-no" title="function not covered" >function(elemId, attribute, changeVal){</span></span>
+<span class="cstat-no" title="statement not covered" >            var changeElem = document.getElementById(elemId);</span>
+<span class="cstat-no" title="statement not covered" >            var changeScope = angular.element(changeElem).isolateScope();</span>
+<span class="cstat-no" title="statement not covered" >            changeScope[attribute] = changeVal;</span>
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        $scope.deleteRender = <span class="fstat-no" title="function not covered" >function(elemId){</span></span>
+<span class="cstat-no" title="statement not covered" >            console.log("delete called");</span>
+<span class="cstat-no" title="statement not covered" >            var deleteElem = document.getElementById(elemId);</span>
+<span class="cstat-no" title="statement not covered" >            var deleteScope = angular.element(deleteElem).isolateScope();</span>
+<span class="cstat-no" title="statement not covered" >            deleteScope.$destroy();</span>
+        };
+    }]);</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Tue Feb 07 2017 18:14:31 GMT-0800 (Pacific Standard Time)
+</div>
+</div>
+<script src="../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../sorter.js"></script>
+</body>
+</html>
