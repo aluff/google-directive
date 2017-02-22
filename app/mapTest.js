@@ -26,14 +26,10 @@ describe('testing map directives', function() {
         scope.newOpt = {draggable: false};
     });
 
-
-
-
     // afterEach(function() {
     //     var testDiv = document.getElementById("testDiv");
     //     testDiv.parentNode.removeChild(testDiv);
     // });
-
 
     it('should create a google map', function() {
         var map_div = document.createElement("div");
@@ -370,5 +366,3 @@ describe('testing map directives', function() {
 
 
 });
-
-//ng-repeat vs array -- destroy scope when using it
