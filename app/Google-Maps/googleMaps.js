@@ -3,24 +3,22 @@ angular.module('Google-Maps', [])
         function link(scope, element, attrs, ctrl) {
             scope.$watch('center', function (newVal, oldVal){
                 console.log("Map: center watch fired");
-                if (newVal !== oldVal){
+                if (!angular.equals(newVal, oldVal)){
                     scope.map.setCenter(newVal);
                 }
             });
 
             scope.$watch('zoom', function (newVal, oldVal){
                 console.log("Map: zoom watch fired");
-                if (newVal != oldVal){
+                if (!angular.equals(newVal, oldVal)){
                     scope.map.setZoom(newVal);
                 }
             });
 
-            scope.$watch('mapOpt', function (newVal, oldVal){
-                console.log("Map: mapOpt watch fired");
-                if (newVal != oldVal){
-                    var prevCenter = scope.map.getCenter();
-                    newVal.center = { lat: prevCenter.lat(), lng: prevCenter.lng() };
-                    newVal.zoom = scope.map.getZoom();
+            scope.$watch('options', function (newVal, oldVal){
+                console.log("Map: options watch fired");
+
+                if (!angular.equals(newVal, oldVal)){
                     scope.map.setOptions(newVal);
                 }
             });
@@ -28,19 +26,19 @@ angular.module('Google-Maps', [])
         return {
             restrict: 'E',
             scope: {
-                mapOpt: '=?',
+                options: '=?',
                 center: '=',
                 zoom: '='
             },
             transclude: true,
             link: link,
             controller: ['$scope', '$rootScope', function myMapController($scope, $rootScope){
-                if (!$scope.mapOpt){
-                    $scope.mapOpt = {};
+                if (!$scope.options){
+                    $scope.options = {};
                 }
-                $scope.mapOpt.center = $scope.center;
-                $scope.mapOpt.zoom = $scope.zoom;
-                $scope.map = new google.maps.Map(document.getElementById('map'), $scope.mapOpt);
+                $scope.options.center = $scope.center;
+                $scope.options.zoom = $scope.zoom;
+                $scope.map = new google.maps.Map(document.getElementById('map'), $scope.options);
                 $rootScope.map = $scope.map;
 
                 this.addObject = function (scope, type){
@@ -51,24 +49,6 @@ angular.module('Google-Maps', [])
                     }
 
                     options.map = $scope.map;
-
-                    if (["polygon", "circle", "rectangle"].indexOf(type) > -1){
-                        if (scope.fillColor){
-                            options.fillColor = scope.fillColor;
-                        }
-                        if (scope.fillOpacity){
-                            options.fillOpacity = scope.fillOpacity;
-                        }
-                        if (scope.lineColor){
-                            options.strokeColor = scope.lineColor;
-                        }
-                        if (scope.lineWidth){
-                            options.strokeWeight = scope.lineWidth;
-                        }
-                        if (scope.lineOpacity){
-                            options.strokeOpacity = scope.lineOpacity;
-                        }
-                    }
 
                     switch (type){
                         case "circle":
@@ -101,15 +81,6 @@ angular.module('Google-Maps', [])
 
                         case "polyline":
                             options.path = scope.path;
-                            if (scope.color){
-                                options.strokeColor = scope.color;
-                            }
-                            if (scope.width){
-                                options.strokeWeight = scope.width;
-                            }
-                            if (scope.opacity){
-                                options.strokeOpacity = scope.opacity;
-                            }
                             newObject = new google.maps.Polyline(options);
                             break;
 
@@ -122,9 +93,6 @@ angular.module('Google-Maps', [])
                             options.bounds = scope.bounds;
                             newObject = new google.maps.Rectangle(options);
                             break;
-
-                        default:
-                            console.error("Unknown shape type");
                     }
                     return newObject;
                 }
@@ -138,14 +106,14 @@ angular.module('Google-Maps', [])
 
             scope.$watch('position', function (newVal, oldVal){
                 console.log("Marker: position watch fired");
-                if (newVal != oldVal){
+                if (!angular.equals(newVal, oldVal)){
                     scope.marker.setPosition(newVal);
                 }
             });
 
             scope.$watch('draggable', function (newVal, oldVal){
                 console.log("Marker: draggable watch fired");
-                if (newVal != oldVal){
+                if (!angular.equals(newVal, oldVal)){
                     scope.marker.setDraggable(newVal);
 
                 }
@@ -153,25 +121,57 @@ angular.module('Google-Maps', [])
 
             scope.$watch('icon', function (newVal, oldVal){
                 console.log("Marker: icon watch fired");
-                if (newVal != oldVal){
+                if (!angular.equals(newVal, oldVal)){
                     scope.marker.setIcon(newVal);
                 }
             });
 
             scope.$watch('info', function (newVal, oldVal){
-                if (newVal != oldVal){
+                if (!angular.equals(newVal, oldVal)){
                     scope.marker._infoWin.setContent(newVal);
-
                 }
             });
 
             scope.$watch('options', function (newVal, oldVal){
                 console.log("Marker: markerOpt watch fired");
-                if (newVal != oldVal){
-                    newVal.position = scope.marker.getPosition();
-                    newVal.draggable = scope.marker.getDraggable();
-                    newVal.icon = scope.marker.getIcon();
-                    scope.marker.setOptions(newVal);
+                if (!angular.equals(newVal, oldVal)) {
+                    if(newVal.hasOwnProperty("animation")) {
+                        scope.marker.setAnimation(newVal.animation);
+                        delete newVal.animation;
+                    }
+                    if(newVal.hasOwnProperty("clickable")) {
+                        scope.marker.setClickable(newVal.clickable);
+                        delete newVal.clickable;
+                    }
+                    if(newVal.hasOwnProperty("cursor")) {
+                        scope.marker.setCursor(newVal.cursor);
+                        delete newVal.cursor;
+                    }
+                    if(newVal.hasOwnProperty("label")) {
+                        scope.marker.setLabel(newVal.label);
+                        delete newVal.label;
+                    }
+                    if(newVal.hasOwnProperty("opacity")) {
+                        scope.marker.setOpacity(newVal.opacity);
+                        delete newVal.opacity;
+                    }
+                    if(newVal.hasOwnProperty("title")) {
+                        scope.marker.setTitle(newVal.title);
+                        delete newVal.title;
+                    }
+                    if(newVal.hasOwnProperty("visible")) {
+                        scope.marker.setVisible(newVal.visible);
+                        delete newVal.visible;
+                    }
+                    if(newVal.hasOwnProperty("zIndex")) {
+                        scope.marker.setZIndex(newVal.zIndex);
+                        delete newVal.zIndex;
+                    }
+                    console.log("Options left:", newVal);
+                    if (!angular.equals(newVal, {})){
+                        console.log("Calling setOptions");
+                        scope.marker.setOptions(newVal);
+                    }
                 }
             });
 
@@ -200,37 +200,30 @@ angular.module('Google-Maps', [])
 
             scope.$watch('path', function (newVal, oldVal){
                 console.log("Polyline: path watch fired");
-                if (newVal != oldVal){
+                if (!angular.equals(newVal, oldVal)){
                     scope.polyline.setPath(newVal);
-                }
-            });
-
-            scope.$watch('color', function (newVal, oldVal){
-                console.log("Polyline: strokecolor watch fired");
-                if (newVal != oldVal){
-                    scope.polyline.setOptions({strokeColor: newVal});
-
-                }
-            });
-
-            scope.$watch('width', function (newVal, oldVal){
-                console.log("PolyLine: width watch fired");
-                if (newVal != oldVal){
-                    scope.polyline.setOptions({strokeWeight: newVal});
-                }
-            });
-
-            scope.$watch('opacity', function (newVal, oldVal){
-                console.log("PolyLine: opacity watch fired");
-                if (newVal != oldVal){
-                    scope.polyline.setOptions({strokeOpacity: newVal});
                 }
             });
 
             scope.$watch('options', function (newVal, oldVal){
                 console.log("PolyLine: options watch fired");
-                if (newVal != oldVal){
-                    scope.polyline.setOptions(newVal);
+                if (!angular.equals(newVal, oldVal)) {
+                    if (newVal.hasOwnProperty("draggable")) {
+                        scope.polyline.setDraggable(newVal.draggable);
+                        delete newVal.draggable;
+                    }
+                    if (newVal.hasOwnProperty("editable")) {
+                        scope.polyline.setEditable(newVal.editable);
+                        delete newVal.editable;
+                    }
+                    if (newVal.hasOwnProperty("visible")) {
+                        scope.polyline.setVisible(newVal.visible);
+                        delete newVal.visible;
+                    }
+                    if (!angular.equals(newVal, {})) {
+                        console.log("Calling setOptions");
+                        scope.polyline.setOptions(newVal);
+                    }
                 }
             });
 
@@ -245,9 +238,6 @@ angular.module('Google-Maps', [])
             replace: true,
             scope:{
                 path: '=',
-                color: '=?',
-                width: '=?',
-                opacity: '=?',
                 options: '=?'
             },
             link: link
@@ -259,51 +249,30 @@ angular.module('Google-Maps', [])
 
             scope.$watch('paths', function (newVal, oldVal){
                 console.log("Polygon: paths watch fired");
-                if (newVal != oldVal){
-                    scope.polygon.setPath(newVal);
-                }
-            });
-
-            scope.$watch('fillColor', function (newVal, oldVal){
-                console.log("Polygon: fillColor watch fired");
-                if (newVal != oldVal){
-                    scope.polygon.setOptions({fillColor: newVal});
-
-                }
-            });
-
-            scope.$watch('fillOpacity', function (newVal, oldVal){
-                console.log("Polygon: fillOpacity watch fired");
-                if (newVal != oldVal){
-                    scope.polygon.setOptions({fillOpacity: newVal});
-                }
-            });
-
-            scope.$watch('lineWidth', function (newVal, oldVal){
-                console.log("Polygon: lineWidth watch fired");
-                if (newVal != oldVal){
-                    scope.polygon.setOptions({strokeWeight: newVal});
-                }
-            });
-
-            scope.$watch('lineColor', function (newVal, oldVal){
-                console.log("Polygon: lineColor watch fired");
-                if (newVal != oldVal){
-                    scope.polygon.setOptions({strokeColor: newVal});
-                }
-            });
-
-            scope.$watch('lineOpacity', function (newVal, oldVal){
-                console.log("Polygon: lineOpacity watch fired");
-                if (newVal != oldVal){
-                    scope.polygon.setOptions({strokeOpacity: newVal});
+                if (!angular.equals(newVal, oldVal)){
+                    scope.polygon.setPaths(newVal);
                 }
             });
 
             scope.$watch('options', function (newVal, oldVal){
                 console.log("Polygon: options watch fired");
-                if (newVal != oldVal){
-                    scope.polygon.setOptions(newVal);
+                if (!angular.equals(newVal, oldVal)) {
+                    if (newVal.hasOwnProperty("draggable")) {
+                        scope.polygon.setDraggable(newVal.draggable);
+                        delete newVal.draggable;
+                    }
+                    if (newVal.hasOwnProperty("editable")) {
+                        scope.polygon.setEditable(newVal.editable);
+                        delete newVal.editable;
+                    }
+                    if (newVal.hasOwnProperty("visible")) {
+                        scope.polygon.setVisible(newVal.visible);
+                        delete newVal.visible;
+                    }
+                    if (!angular.equals(newVal, {})) {
+                        console.log("Calling setOptions");
+                        scope.polygon.setOptions(newVal);
+                    }
                 }
             });
 
@@ -318,11 +287,6 @@ angular.module('Google-Maps', [])
             replace: true,
             scope:{
                 paths: '=',
-                fillColor: '=?',
-                fillOpacity: '=?',
-                lineWidth: '=?',
-                lineColor: '=?',
-                lineOpacity: '=?',
                 options: '=?'
             },
             link: link
@@ -334,51 +298,30 @@ angular.module('Google-Maps', [])
 
             scope.$watch('bounds', function (newVal, oldVal){
                 console.log("Rectangle: bounds watch fired");
-                if (newVal != oldVal){
+                if (!angular.equals(newVal, oldVal)){
                     scope.rectangle.setBounds(newVal);
-                }
-            });
-
-            scope.$watch('fillColor', function (newVal, oldVal){
-                console.log("Rectangle: fillColor watch fired");
-                if (newVal != oldVal){
-                    scope.rectangle.setOptions({fillColor: newVal});
-
-                }
-            });
-
-            scope.$watch('fillOpacity', function (newVal, oldVal){
-                console.log("Rectangle: fillOpacity watch fired");
-                if (newVal != oldVal){
-                    scope.rectangle.setOptions({fillOpacity: newVal});
-                }
-            });
-
-            scope.$watch('lineWidth', function (newVal, oldVal){
-                console.log("Rectangle: lineWidth watch fired");
-                if (newVal != oldVal){
-                    scope.rectangle.setOptions({strokeWeight: newVal});
-                }
-            });
-
-            scope.$watch('lineColor', function (newVal, oldVal){
-                console.log("Rectangle: lineColor watch fired");
-                if (newVal != oldVal){
-                    scope.rectangle.setOptions({strokeColor: newVal});
-                }
-            });
-
-            scope.$watch('lineOpacity', function (newVal, oldVal){
-                console.log("Rectangle: lineOpacity watch fired");
-                if (newVal != oldVal){
-                    scope.rectangle.setOptions({strokeOpacity: newVal});
                 }
             });
 
             scope.$watch('options', function (newVal, oldVal){
                 console.log("Rectangle: options watch fired");
-                if (newVal != oldVal){
-                    scope.rectangle.setOptions(newVal);
+                if (!angular.equals(newVal, oldVal)) {
+                    if (newVal.hasOwnProperty("draggable")) {
+                        scope.rectangle.setDraggable(newVal.draggable);
+                        delete newVal.draggable;
+                    }
+                    if (newVal.hasOwnProperty("editable")) {
+                        scope.rectangle.setEditable(newVal.editable);
+                        delete newVal.editable;
+                    }
+                    if (newVal.hasOwnProperty("visible")) {
+                        scope.rectangle.setVisible(newVal.visible);
+                        delete newVal.visible;
+                    }
+                    if (!angular.equals(newVal, {})) {
+                        console.log("Calling setOptions");
+                        scope.rectangle.setOptions(newVal);
+                    }
                 }
             });
 
@@ -392,11 +335,6 @@ angular.module('Google-Maps', [])
             restrict: 'E',
             scope:{
                 bounds: '=',
-                fillColor: '=?',
-                fillOpacity: '=?',
-                lineWidth: '=?',
-                lineColor: '=?',
-                lineOpacity: '=?',
                 options: '=?'
             },
             link: link
@@ -408,58 +346,37 @@ angular.module('Google-Maps', [])
 
             scope.$watch('center', function (newVal, oldVal){
                 console.log("Circle: center watch fired");
-                if (newVal != oldVal){
+                if (!angular.equals(newVal, oldVal)){
                     scope.circle.setCenter(newVal);
                 }
             });
 
             scope.$watch('radius', function (newVal, oldVal){
                 console.log("Circle: radius watch fired");
-                if (newVal != oldVal){
+                if (!angular.equals(newVal, oldVal)){
                     scope.circle.setRadius(newVal);
-                }
-            });
-
-            scope.$watch('fillColor', function (newVal, oldVal){
-                console.log("Circle: fillColor watch fired");
-                if (newVal != oldVal){
-                    scope.circle.setOptions({fillColor: newVal});
-
-                }
-            });
-
-            scope.$watch('fillOpacity', function (newVal, oldVal){
-                console.log("Circle: fillOpacity watch fired");
-                if (newVal != oldVal){
-                    scope.circle.setOptions({fillOpacity: newVal});
-                }
-            });
-
-            scope.$watch('lineWidth', function (newVal, oldVal){
-                console.log("Circle: lineWidth watch fired");
-                if (newVal != oldVal){
-                    scope.circle.setOptions({strokeWeight: newVal});
-                }
-            });
-
-            scope.$watch('lineColor', function (newVal, oldVal){
-                console.log("Circle: lineColor watch fired");
-                if (newVal != oldVal){
-                    scope.circle.setOptions({strokeColor: newVal});
-                }
-            });
-
-            scope.$watch('lineOpacity', function (newVal, oldVal){
-                console.log("Circle: lineOpacity watch fired");
-                if (newVal != oldVal){
-                    scope.circle.setOptions({strokeOpacity: newVal});
                 }
             });
 
             scope.$watch('options', function (newVal, oldVal){
                 console.log("Circle: options watch fired");
-                if (newVal != oldVal){
-                    scope.circle.setOptions(newVal);
+                if (!angular.equals(newVal, oldVal)) {
+                    if (newVal.hasOwnProperty("draggable")) {
+                        scope.circle.setDraggable(newVal.draggable);
+                        delete newVal.draggable;
+                    }
+                    if (newVal.hasOwnProperty("editable")) {
+                        scope.circle.setEditable(newVal.editable);
+                        delete newVal.editable;
+                    }
+                    if (newVal.hasOwnProperty("visible")) {
+                        scope.circle.setVisible(newVal.visible);
+                        delete newVal.visible;
+                    }
+                    if (!angular.equals(newVal, {})) {
+                        console.log("Calling setOptions");
+                        scope.circle.setOptions(newVal);
+                    }
                 }
             });
 
@@ -474,11 +391,6 @@ angular.module('Google-Maps', [])
             scope:{
                 center: '=',
                 radius: '=',
-                fillColor: '=?',
-                fillOpacity: '=?',
-                lineWidth: '=?',
-                lineColor: '=?',
-                lineOpacity: '=?',
                 options: '=?'
             },
             link: link

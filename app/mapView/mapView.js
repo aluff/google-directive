@@ -40,7 +40,7 @@ angular.module('myApp.mapView', ['ngRoute', 'Google-Maps'])
 
         // Polyline New Options
         $scope.newLine = [$scope.mapPos, {lat: 32.886325, lng: -117.239278 }, $scope.newCenter];
-        $scope.newShapeOpt = {visible: false};
+        $scope.newShapeOpt = {strokeColor: "red"};
 
         // Polygon New Options
         $scope.newTriangle = [$scope.mapPos, {lat: 32.877880, lng: -117.237214 }, $scope.newCenter];

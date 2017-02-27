@@ -22,7 +22,7 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>279/279</span>
+        <span class='fraction'>860/860</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
@@ -32,12 +32,12 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>15/15</span>
+        <span class='fraction'>54/54</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>279/279</span>
+        <span class='fraction'>860/860</span>
       </div>
     </div>
   </div>
@@ -417,73 +417,1039 @@
 372
 373
 374
-375</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+375
+376
+377
+378
+379
+380
+381
+382
+383
+384
+385
+386
+387
+388
+389
+390
+391
+392
+393
+394
+395
+396
+397
+398
+399
+400
+401
+402
+403
+404
+405
+406
+407
+408
+409
+410
+411
+412
+413
+414
+415
+416
+417
+418
+419
+420
+421
+422
+423
+424
+425
+426
+427
+428
+429
+430
+431
+432
+433
+434
+435
+436
+437
+438
+439
+440
+441
+442
+443
+444
+445
+446
+447
+448
+449
+450
+451
+452
+453
+454
+455
+456
+457
+458
+459
+460
+461
+462
+463
+464
+465
+466
+467
+468
+469
+470
+471
+472
+473
+474
+475
+476
+477
+478
+479
+480
+481
+482
+483
+484
+485
+486
+487
+488
+489
+490
+491
+492
+493
+494
+495
+496
+497
+498
+499
+500
+501
+502
+503
+504
+505
+506
+507
+508
+509
+510
+511
+512
+513
+514
+515
+516
+517
+518
+519
+520
+521
+522
+523
+524
+525
+526
+527
+528
+529
+530
+531
+532
+533
+534
+535
+536
+537
+538
+539
+540
+541
+542
+543
+544
+545
+546
+547
+548
+549
+550
+551
+552
+553
+554
+555
+556
+557
+558
+559
+560
+561
+562
+563
+564
+565
+566
+567
+568
+569
+570
+571
+572
+573
+574
+575
+576
+577
+578
+579
+580
+581
+582
+583
+584
+585
+586
+587
+588
+589
+590
+591
+592
+593
+594
+595
+596
+597
+598
+599
+600
+601
+602
+603
+604
+605
+606
+607
+608
+609
+610
+611
+612
+613
+614
+615
+616
+617
+618
+619
+620
+621
+622
+623
+624
+625
+626
+627
+628
+629
+630
+631
+632
+633
+634
+635
+636
+637
+638
+639
+640
+641
+642
+643
+644
+645
+646
+647
+648
+649
+650
+651
+652
+653
+654
+655
+656
+657
+658
+659
+660
+661
+662
+663
+664
+665
+666
+667
+668
+669
+670
+671
+672
+673
+674
+675
+676
+677
+678
+679
+680
+681
+682
+683
+684
+685
+686
+687
+688
+689
+690
+691
+692
+693
+694
+695
+696
+697
+698
+699
+700
+701
+702
+703
+704
+705
+706
+707
+708
+709
+710
+711
+712
+713
+714
+715
+716
+717
+718
+719
+720
+721
+722
+723
+724
+725
+726
+727
+728
+729
+730
+731
+732
+733
+734
+735
+736
+737
+738
+739
+740
+741
+742
+743
+744
+745
+746
+747
+748
+749
+750
+751
+752
+753
+754
+755
+756
+757
+758
+759
+760
+761
+762
+763
+764
+765
+766
+767
+768
+769
+770
+771
+772
+773
+774
+775
+776
+777
+778
+779
+780
+781
+782
+783
+784
+785
+786
+787
+788
+789
+790
+791
+792
+793
+794
+795
+796
+797
+798
+799
+800
+801
+802
+803
+804
+805
+806
+807
+808
+809
+810
+811
+812
+813
+814
+815
+816
+817
+818
+819
+820
+821
+822
+823
+824
+825
+826
+827
+828
+829
+830
+831
+832
+833
+834
+835
+836
+837
+838
+839
+840
+841
+842
+843
+844
+845
+846
+847
+848
+849
+850
+851
+852
+853
+854
+855
+856
+857
+858
+859
+860
+861
+862
+863
+864
+865
+866
+867
+868
+869
+870
+871
+872
+873
+874
+875
+876
+877
+878
+879
+880
+881
+882
+883
+884
+885
+886
+887
+888
+889
+890
+891
+892
+893
+894
+895
+896
+897
+898
+899
+900
+901
+902
+903
+904
+905
+906
+907
+908
+909
+910
+911
+912
+913
+914
+915
+916
+917
+918
+919
+920
+921
+922
+923
+924
+925
+926
+927
+928
+929
+930
+931
+932
+933
+934
+935
+936
+937
+938
+939
+940
+941
+942
+943
+944
+945
+946
+947
+948
+949
+950
+951
+952
+953
+954
+955
+956
+957
+958
+959
+960
+961
+962
+963
+964
+965
+966
+967
+968
+969
+970
+971
+972
+973
+974
+975
+976
+977
+978
+979
+980
+981
+982
+983
+984
+985
+986
+987
+988
+989
+990
+991
+992
+993
+994
+995
+996
+997
+998
+999
+1000
+1001
+1002
+1003
+1004
+1005
+1006
+1007
+1008
+1009
+1010
+1011
+1012
+1013
+1014
+1015
+1016
+1017
+1018
+1019
+1020
+1021
+1022
+1023
+1024
+1025
+1026
+1027
+1028
+1029
+1030
+1031
+1032
+1033
+1034
+1035
+1036
+1037
+1038
+1039
+1040
+1041
+1042
+1043
+1044
+1045
+1046
+1047
+1048
+1049
+1050
+1051
+1052
+1053
+1054
+1055
+1056
+1057
+1058
+1059
+1060
+1061
+1062
+1063
+1064
+1065
+1066
+1067
+1068
+1069
+1070
+1071
+1072
+1073
+1074
+1075
+1076
+1077
+1078
+1079
+1080
+1081
+1082
+1083
+1084
+1085
+1086
+1087
+1088
+1089
+1090
+1091
+1092
+1093
+1094
+1095
+1096
+1097
+1098
+1099
+1100
+1101
+1102
+1103
+1104
+1105
+1106
+1107
+1108
+1109
+1110
+1111
+1112
+1113
+1114
+1115
+1116
+1117
+1118
+1119
+1120
+1121
+1122
+1123
+1124
+1125
+1126
+1127
+1128
+1129
+1130
+1131
+1132
+1133
+1134
+1135
+1136
+1137
+1138
+1139
+1140
+1141
+1142
+1143
+1144
+1145
+1146
+1147
+1148
+1149
+1150
+1151
+1152
+1153
+1154
+1155
+1156
+1157
+1158
+1159
+1160
+1161
+1162
+1163
+1164
+1165
+1166
+1167
+1168
+1169
+1170
+1171
+1172
+1173
+1174
+1175
+1176
+1177
+1178
+1179
+1180
+1181
+1182
+1183
+1184
+1185
+1186
+1187
+1188
+1189
+1190
+1191
+1192
+1193
+1194
+1195
+1196
+1197
+1198
+1199
+1200
+1201
+1202
+1203
+1204
+1205
+1206
+1207
+1208
+1209
+1210
+1211
+1212
+1213
+1214
+1215
+1216</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">51×</span>
+<span class="cline-any cline-yes">51×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">51×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">51×</span>
+<span class="cline-any cline-yes">51×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">51×</span>
+<span class="cline-any cline-yes">51×</span>
+<span class="cline-any cline-yes">51×</span>
+<span class="cline-any cline-yes">51×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">51×</span>
+<span class="cline-any cline-yes">51×</span>
+<span class="cline-any cline-yes">51×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">12×</span>
-<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">12×</span>
-<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">12×</span>
-<span class="cline-any cline-yes">12×</span>
-<span class="cline-any cline-yes">12×</span>
-<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">12×</span>
-<span class="cline-any cline-yes">12×</span>
-<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
@@ -506,32 +1472,54 @@
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -542,15 +1530,20 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
@@ -560,7 +1553,9 @@
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
@@ -571,7 +1566,9 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
@@ -585,18 +1582,27 @@
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
@@ -605,6 +1611,14 @@
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
@@ -629,17 +1643,33 @@
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
@@ -664,82 +1694,140 @@
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -748,6 +1836,8 @@
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
@@ -759,19 +1849,32 @@
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -784,11 +1887,590 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">'use strict';
@@ -819,19 +2501,19 @@ describe('testing map directives', function() {
         scope.newOpt = {draggable: false};
     });
 &nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
     // afterEach(function() {
     //     var testDiv = document.getElementById("testDiv");
     //     testDiv.parentNode.removeChild(testDiv);
     // });
 &nbsp;
+    /*-------------------------------------------------------
+     Map Tests
+     -------------------------------------------------------- */
 &nbsp;
-    it('should create a google map', function() {
+    it('should create a google map with options', function() {
         var map_div = document.createElement("div");
         map_div.setAttribute("id", "testDiv");
-        map_div.innerHTML = '&lt;my-map center="center" zoom="zoom" map-opt="mapOpt"&gt;&lt;/my-map&gt;';
+        map_div.innerHTML = '&lt;my-map center="center" zoom="zoom" options="mapOpt"&gt;&lt;/my-map&gt;';
         document.body.appendChild(map_div);
         var directiveElem = $compile(document.body)(scope);
         scope.$digest();
@@ -846,13 +2528,119 @@ describe('testing map directives', function() {
         scope.$destroy();
     });
 &nbsp;
-    it('should create a marker', function(){
+    it('should create a google map without options', function() {
+        var map_div = document.createElement("div");
+        map_div.setAttribute("id", "testDiv");
+        map_div.innerHTML = '&lt;my-map center="center" zoom="zoom"&gt;&lt;/my-map&gt;';
+        document.body.appendChild(map_div);
+        var directiveElem = $compile(document.body)(scope);
+        scope.$digest();
+&nbsp;
+        expect(scope.map).toBeDefined();
+        expect(scope.map.zoom).toEqual(13);
+        expect(scope.map.getCenter().toUrlValue()).toEqual('32.880951,-117.233827');
+&nbsp;
+        var testDiv = document.getElementById("testDiv");
+        testDiv.parentNode.removeChild(testDiv);
+        scope.$destroy();
+    });
+&nbsp;
+    it('should change map center', function() {
+        var map_div = document.createElement("div");
+        map_div.setAttribute("id", "testDiv");
+        map_div.innerHTML = '&lt;my-map center="center" zoom="zoom" options="mapOpt"&gt;&lt;/my-map&gt;';
+        document.body.appendChild(map_div);
+        var directiveElem = $compile(document.body)(scope);
+        scope.$digest();
+&nbsp;
+        var mapScope = scope.$$childHead;
+&nbsp;
+        mapScope.$digest();
+        mapScope.center = scope.newCenter;
+&nbsp;
+        mapScope.$digest();
+        expect(scope.map).toBeDefined();
+        expect(scope.map.getCenter().toUrlValue()).toEqual('32.880951,-117.25');
+&nbsp;
+        var testDiv = document.getElementById("testDiv");
+        testDiv.parentNode.removeChild(testDiv);
+        scope.$destroy();
+    });
+&nbsp;
+    it('should change map zoom', function() {
+        var map_div = document.createElement("div");
+        map_div.setAttribute("id", "testDiv");
+        map_div.innerHTML = '&lt;my-map center="center" zoom="zoom" options="mapOpt"&gt;&lt;/my-map&gt;';
+        document.body.appendChild(map_div);
+        var directiveElem = $compile(document.body)(scope);
+        scope.$digest();
+&nbsp;
+        var mapScope = scope.$$childHead;
+&nbsp;
+        mapScope.$digest();
+        mapScope.zoom = scope.newZoom;
+&nbsp;
+        mapScope.$digest();
+        expect(scope.map).toBeDefined();
+        expect(scope.map.zoom).toEqual(9);
+&nbsp;
+        var testDiv = document.getElementById("testDiv");
+        testDiv.parentNode.removeChild(testDiv);
+        scope.$destroy();
+    });
+&nbsp;
+    it('should change map options', function() {
+        var map_div = document.createElement("div");
+        map_div.setAttribute("id", "testDiv");
+        map_div.innerHTML = '&lt;my-map center="center" zoom="zoom" options="mapOpt"&gt;&lt;/my-map&gt;';
+        document.body.appendChild(map_div);
+        var directiveElem = $compile(document.body)(scope);
+        scope.$digest();
+&nbsp;
+        var mapScope = scope.$$childHead;
+&nbsp;
+        mapScope.$digest();
+        mapScope.options = scope.newOpt;
+&nbsp;
+        mapScope.$digest();
+        expect(scope.map).toBeDefined();
+        expect(scope.map.draggable).toEqual(false);
+&nbsp;
+        var testDiv = document.getElementById("testDiv");
+        testDiv.parentNode.removeChild(testDiv);
+        scope.$destroy();
+    });
+&nbsp;
+    /*-------------------------------------------------------
+        Marker Tests
+      -------------------------------------------------------- */
+&nbsp;
+    it('should create a marker with no optional attr', function(){
+        scope.markerPos = scope.mapPos;
+&nbsp;
+        var marker_div = document.createElement('div');
+        marker_div.setAttribute("id", "testDiv");
+        marker_div.innerHTML = '&lt;my-map center="center" zoom="zoom" options="mapOpt"&gt;&lt;my-marker id="marker1" position="markerPos"&gt;&lt;/my-marker&gt;&lt;/my-map&gt;';
+        document.body.appendChild(marker_div);
+        var markerElem = $compile(document.body)(scope);
+        scope.$digest();
+&nbsp;
+        var markerScope = scope.$$childTail.$$childHead.$$childHead;
+        expect(markerScope.marker).toBeDefined();
+        expect(markerScope.marker.getPosition().toUrlValue()).toEqual('32.880951,-117.233827');
+&nbsp;
+        var testDiv = document.getElementById("testDiv");
+        testDiv.parentNode.removeChild(testDiv);
+        scope.$destroy();
+    });
+&nbsp;
+    it('should create a marker with draggable attr', function(){
         scope.markerPos = scope.mapPos;
         scope.draggable = true;
 &nbsp;
         var marker_div = document.createElement('div');
         marker_div.setAttribute("id", "testDiv");
-        marker_div.innerHTML = '&lt;my-map center="center" zoom="zoom" map-opt="mapOpt"&gt;&lt;my-marker id="marker1" position="markerPos" draggable="draggable" info="\'This is a marker\'"&gt;&lt;/my-marker&gt;&lt;/my-map&gt;';
+        marker_div.innerHTML = '&lt;my-map center="center" zoom="zoom" options="mapOpt"&gt;&lt;my-marker id="marker1" position="markerPos" draggable="draggable"&gt;&lt;/my-marker&gt;&lt;/my-map&gt;';
         document.body.appendChild(marker_div);
         var markerElem = $compile(document.body)(scope);
         scope.$digest();
@@ -867,44 +2655,553 @@ describe('testing map directives', function() {
         scope.$destroy();
     });
 &nbsp;
-    it('should create a polyline', function(){
-        scope.line = [scope.mapPos, {lat: 32.886325, lng: -117.239278 }];
+    it('should create a marker with info attr', function(){
+        scope.markerPos = scope.mapPos;
 &nbsp;
-        var polyline_div = document.createElement('div');
-        polyline_div.setAttribute("id", "testDiv");
-        polyline_div.innerHTML = '&lt;my-map center="center" zoom="zoom" map-opt="mapOpt"&gt;&lt;my-polyline id="polyline1" path="line" color="\'red\'" opacity="0.5" width="5"&gt;&lt;/my-polyline&gt;&lt;/my-map&gt;';
-        document.body.appendChild(polyline_div);
-        var polylineElem = $compile(document.body)(scope);
+        var marker_div = document.createElement('div');
+        marker_div.setAttribute("id", "testDiv");
+        marker_div.innerHTML = '&lt;my-map center="center" zoom="zoom" options="mapOpt"&gt;&lt;my-marker id="marker1" position="markerPos" info="\'This is a marker\'"&gt;&lt;/my-marker&gt;&lt;/my-map&gt;';
+        document.body.appendChild(marker_div);
+        var markerElem = $compile(document.body)(scope);
         scope.$digest();
 &nbsp;
-        var polylineScope = scope.$$childTail.$$childHead.$$childHead;
-        expect(polylineScope.polyline).toBeDefined();
-        expect(polylineScope.polyline.strokeColor).toEqual("red");
-        expect(polylineScope.polyline.strokeOpacity).toEqual(0.5);
-        expect(polylineScope.polyline.getPath().b[0].toUrlValue()).toEqual('32.880951,-117.233827');
-        expect(polylineScope.polyline.getPath().b[1].toUrlValue()).toEqual('32.886325,-117.239278');
-        expect(polylineScope.polyline.strokeWeight).toEqual(5);
+        var markerScope = scope.$$childTail.$$childHead.$$childHead;
+        expect(markerScope.marker).toBeDefined();
+        expect(markerScope.marker._infoWin.content).toEqual("This is a marker");
 &nbsp;
         var testDiv = document.getElementById("testDiv");
         testDiv.parentNode.removeChild(testDiv);
         scope.$destroy();
     });
 &nbsp;
-    it('should create a polygon', function(){
+    it('should create a marker with icon attr', function(){
+        scope.markerPos = scope.mapPos;
+&nbsp;
+        var marker_div = document.createElement('div');
+        marker_div.setAttribute("id", "testDiv");
+        marker_div.innerHTML = '&lt;my-map center="center" zoom="zoom" options="mapOpt"&gt;&lt;my-marker id="marker1" position="markerPos" icon="\'https://portfolium.cloudimg.io/s/crop/128x128/https://cdn.portfolium.com/ugcs3/networks/ucsdlogo.png\'"&gt;&lt;/my-marker&gt;&lt;/my-map&gt;';
+        document.body.appendChild(marker_div);
+        var markerElem = $compile(document.body)(scope);
+        scope.$digest();
+&nbsp;
+        var markerScope = scope.$$childTail.$$childHead.$$childHead;
+        expect(markerScope.marker).toBeDefined();
+        expect(markerScope.marker.icon).toEqual("https://portfolium.cloudimg.io/s/crop/128x128/https://cdn.portfolium.com/ugcs3/networks/ucsdlogo.png");
+&nbsp;
+        var testDiv = document.getElementById("testDiv");
+        testDiv.parentNode.removeChild(testDiv);
+        scope.$destroy();
+    });
+&nbsp;
+    it('should change marker position', function(){
+        scope.markerPos = scope.mapPos;
+        scope.draggable = true;
+&nbsp;
+        var marker_div = document.createElement('div');
+        marker_div.setAttribute("id", "testDiv");
+        marker_div.innerHTML = '&lt;my-map center="center" zoom="zoom" options="mapOpt"&gt;&lt;my-marker id="marker1" position="markerPos" draggable="draggable" info="\'This is a marker\'"&gt;&lt;/my-marker&gt;&lt;/my-map&gt;';
+        document.body.appendChild(marker_div);
+        var markerElem = $compile(document.body)(scope);
+        scope.$digest();
+&nbsp;
+        var markerScope = scope.$$childTail.$$childHead.$$childHead;
+        markerScope.$digest();
+&nbsp;
+        markerScope.position = scope.newCenter;
+&nbsp;
+        markerScope.$digest();
+        expect(markerScope.marker).toBeDefined();
+        expect(markerScope.marker.getPosition().toUrlValue()).toEqual('32.880951,-117.25');
+&nbsp;
+        var testDiv = document.getElementById("testDiv");
+        testDiv.parentNode.removeChild(testDiv);
+        scope.$destroy();
+    });
+&nbsp;
+    it('should change marker draggable', function(){
+        scope.markerPos = scope.mapPos;
+        scope.draggable = true;
+&nbsp;
+        var marker_div = document.createElement('div');
+        marker_div.setAttribute("id", "testDiv");
+        marker_div.innerHTML = '&lt;my-map center="center" zoom="zoom" options="mapOpt"&gt;&lt;my-marker id="marker1" position="markerPos" draggable="draggable" info="\'This is a marker\'"&gt;&lt;/my-marker&gt;&lt;/my-map&gt;';
+        document.body.appendChild(marker_div);
+        var markerElem = $compile(document.body)(scope);
+        scope.$digest();
+&nbsp;
+        var markerScope = scope.$$childTail.$$childHead.$$childHead;
+        markerScope.$digest();
+&nbsp;
+        markerScope.draggable = false;
+&nbsp;
+        markerScope.$digest();
+        expect(markerScope.marker).toBeDefined();
+        expect(markerScope.marker.draggable).toEqual(false);
+&nbsp;
+        var testDiv = document.getElementById("testDiv");
+        testDiv.parentNode.removeChild(testDiv);
+        scope.$destroy();
+    });
+&nbsp;
+    it('should change marker icon', function(){
+        scope.markerPos = scope.mapPos;
+        scope.draggable = true;
+&nbsp;
+        var marker_div = document.createElement('div');
+        marker_div.setAttribute("id", "testDiv");
+        marker_div.innerHTML = '&lt;my-map center="center" zoom="zoom" options="mapOpt"&gt;&lt;my-marker id="marker1" position="markerPos" draggable="draggable" info="\'This is a marker\'"&gt;&lt;/my-marker&gt;&lt;/my-map&gt;';
+        document.body.appendChild(marker_div);
+        var markerElem = $compile(document.body)(scope);
+        scope.$digest();
+&nbsp;
+        var markerScope = scope.$$childTail.$$childHead.$$childHead;
+        markerScope.$digest();
+&nbsp;
+        markerScope.icon = 'http://image.flaticon.com/icons/png/128/91/91484.png';
+&nbsp;
+        markerScope.$digest();
+        expect(markerScope.marker).toBeDefined();
+        expect(markerScope.marker.icon).toEqual('http://image.flaticon.com/icons/png/128/91/91484.png');
+&nbsp;
+        var testDiv = document.getElementById("testDiv");
+        testDiv.parentNode.removeChild(testDiv);
+        scope.$destroy();
+    });
+&nbsp;
+    it('should change marker icon', function(){
+        scope.markerPos = scope.mapPos;
+        scope.draggable = true;
+&nbsp;
+        var marker_div = document.createElement('div');
+        marker_div.setAttribute("id", "testDiv");
+        marker_div.innerHTML = '&lt;my-map center="center" zoom="zoom" options="mapOpt"&gt;&lt;my-marker id="marker1" position="markerPos" draggable="draggable" info="\'This is a marker\'"&gt;&lt;/my-marker&gt;&lt;/my-map&gt;';
+        document.body.appendChild(marker_div);
+        var markerElem = $compile(document.body)(scope);
+        scope.$digest();
+&nbsp;
+        var markerScope = scope.$$childTail.$$childHead.$$childHead;
+        markerScope.$digest();
+&nbsp;
+        markerScope.info = 'This is new info';
+&nbsp;
+        markerScope.$digest();
+        expect(markerScope.marker).toBeDefined();
+        expect(markerScope.marker._infoWin.content).toEqual('This is new info');
+&nbsp;
+        var testDiv = document.getElementById("testDiv");
+        testDiv.parentNode.removeChild(testDiv);
+        scope.$destroy();
+    });
+&nbsp;
+    it('should change marker animation', function(){
+        scope.markerPos = scope.mapPos;
+        scope.draggable = true;
+&nbsp;
+        var marker_div = document.createElement('div');
+        marker_div.setAttribute("id", "testDiv");
+        marker_div.innerHTML = '&lt;my-map center="center" zoom="zoom" options="mapOpt"&gt;&lt;my-marker id="marker1" position="markerPos" draggable="draggable" info="\'This is a marker\'"&gt;&lt;/my-marker&gt;&lt;/my-map&gt;';
+        document.body.appendChild(marker_div);
+        var markerElem = $compile(document.body)(scope);
+        scope.$digest();
+&nbsp;
+        var markerScope = scope.$$childTail.$$childHead.$$childHead;
+        markerScope.$digest();
+&nbsp;
+        markerScope.options = {animation: google.maps.Animation.BOUNCE};
+&nbsp;
+        markerScope.$digest();
+        expect(markerScope.marker).toBeDefined();
+        expect(markerScope.marker.animation).toEqual(google.maps.Animation.BOUNCE);
+&nbsp;
+        var testDiv = document.getElementById("testDiv");
+        testDiv.parentNode.removeChild(testDiv);
+        scope.$destroy();
+    });
+&nbsp;
+    it('should change marker clickable', function(){
+        scope.markerPos = scope.mapPos;
+        scope.draggable = true;
+&nbsp;
+        var marker_div = document.createElement('div');
+        marker_div.setAttribute("id", "testDiv");
+        marker_div.innerHTML = '&lt;my-map center="center" zoom="zoom" options="mapOpt"&gt;&lt;my-marker id="marker1" position="markerPos" draggable="draggable" info="\'This is a marker\'"&gt;&lt;/my-marker&gt;&lt;/my-map&gt;';
+        document.body.appendChild(marker_div);
+        var markerElem = $compile(document.body)(scope);
+        scope.$digest();
+&nbsp;
+        var markerScope = scope.$$childTail.$$childHead.$$childHead;
+        markerScope.$digest();
+&nbsp;
+        markerScope.options = {clickable: false};
+&nbsp;
+        markerScope.$digest();
+        expect(markerScope.marker).toBeDefined();
+        expect(markerScope.marker.clickable).toEqual(false);
+&nbsp;
+        var testDiv = document.getElementById("testDiv");
+        testDiv.parentNode.removeChild(testDiv);
+        scope.$destroy();
+    });
+&nbsp;
+    it('should change marker cursor', function(){
+        scope.markerPos = scope.mapPos;
+        scope.draggable = true;
+&nbsp;
+        var marker_div = document.createElement('div');
+        marker_div.setAttribute("id", "testDiv");
+        marker_div.innerHTML = '&lt;my-map center="center" zoom="zoom" options="mapOpt"&gt;&lt;my-marker id="marker1" position="markerPos" draggable="draggable" info="\'This is a marker\'"&gt;&lt;/my-marker&gt;&lt;/my-map&gt;';
+        document.body.appendChild(marker_div);
+        var markerElem = $compile(document.body)(scope);
+        scope.$digest();
+&nbsp;
+        var markerScope = scope.$$childTail.$$childHead.$$childHead;
+        markerScope.$digest();
+&nbsp;
+        markerScope.options = {cursor: 'Cursor test text'};
+&nbsp;
+        markerScope.$digest();
+        console.log(markerScope);
+        expect(markerScope.marker).toBeDefined();
+        expect(markerScope.marker.cursor).toEqual('Cursor test text');
+&nbsp;
+        var testDiv = document.getElementById("testDiv");
+        testDiv.parentNode.removeChild(testDiv);
+        scope.$destroy();
+    });
+&nbsp;
+    it('should change marker label', function(){
+        scope.markerPos = scope.mapPos;
+        scope.draggable = true;
+&nbsp;
+        var marker_div = document.createElement('div');
+        marker_div.setAttribute("id", "testDiv");
+        marker_div.innerHTML = '&lt;my-map center="center" zoom="zoom" options="mapOpt"&gt;&lt;my-marker id="marker1" position="markerPos" draggable="draggable" info="\'This is a marker\'"&gt;&lt;/my-marker&gt;&lt;/my-map&gt;';
+        document.body.appendChild(marker_div);
+        var markerElem = $compile(document.body)(scope);
+        scope.$digest();
+&nbsp;
+        var markerScope = scope.$$childTail.$$childHead.$$childHead;
+        markerScope.$digest();
+&nbsp;
+        markerScope.options = {label: 'a label'};
+&nbsp;
+        markerScope.$digest();
+        expect(markerScope.marker).toBeDefined();
+        expect(markerScope.marker.label).toEqual('a label');
+&nbsp;
+        var testDiv = document.getElementById("testDiv");
+        testDiv.parentNode.removeChild(testDiv);
+        scope.$destroy();
+    });
+&nbsp;
+    it('should change marker opacity', function(){
+        scope.markerPos = scope.mapPos;
+        scope.draggable = true;
+&nbsp;
+        var marker_div = document.createElement('div');
+        marker_div.setAttribute("id", "testDiv");
+        marker_div.innerHTML = '&lt;my-map center="center" zoom="zoom" options="mapOpt"&gt;&lt;my-marker id="marker1" position="markerPos" draggable="draggable" info="\'This is a marker\'"&gt;&lt;/my-marker&gt;&lt;/my-map&gt;';
+        document.body.appendChild(marker_div);
+        var markerElem = $compile(document.body)(scope);
+        scope.$digest();
+&nbsp;
+        var markerScope = scope.$$childTail.$$childHead.$$childHead;
+        markerScope.$digest();
+&nbsp;
+        markerScope.options = {opacity: 0.5};
+&nbsp;
+        markerScope.$digest();
+        expect(markerScope.marker).toBeDefined();
+        expect(markerScope.marker.opacity).toEqual(0.5);
+&nbsp;
+        var testDiv = document.getElementById("testDiv");
+        testDiv.parentNode.removeChild(testDiv);
+        scope.$destroy();
+    });
+&nbsp;
+    it('should change marker title', function(){
+        scope.markerPos = scope.mapPos;
+        scope.draggable = true;
+&nbsp;
+        var marker_div = document.createElement('div');
+        marker_div.setAttribute("id", "testDiv");
+        marker_div.innerHTML = '&lt;my-map center="center" zoom="zoom" options="mapOpt"&gt;&lt;my-marker id="marker1" position="markerPos" draggable="draggable" info="\'This is a marker\'"&gt;&lt;/my-marker&gt;&lt;/my-map&gt;';
+        document.body.appendChild(marker_div);
+        var markerElem = $compile(document.body)(scope);
+        scope.$digest();
+&nbsp;
+        var markerScope = scope.$$childTail.$$childHead.$$childHead;
+        markerScope.$digest();
+&nbsp;
+        markerScope.options = {title: "a new marker title"};
+&nbsp;
+        markerScope.$digest();
+        expect(markerScope.marker).toBeDefined();
+        expect(markerScope.marker.title).toEqual("a new marker title");
+&nbsp;
+        var testDiv = document.getElementById("testDiv");
+        testDiv.parentNode.removeChild(testDiv);
+        scope.$destroy();
+    });
+&nbsp;
+    it('should change marker visibility', function(){
+        scope.markerPos = scope.mapPos;
+        scope.draggable = true;
+&nbsp;
+        var marker_div = document.createElement('div');
+        marker_div.setAttribute("id", "testDiv");
+        marker_div.innerHTML = '&lt;my-map center="center" zoom="zoom" options="mapOpt"&gt;&lt;my-marker id="marker1" position="markerPos" draggable="draggable" info="\'This is a marker\'"&gt;&lt;/my-marker&gt;&lt;/my-map&gt;';
+        document.body.appendChild(marker_div);
+        var markerElem = $compile(document.body)(scope);
+        scope.$digest();
+&nbsp;
+        var markerScope = scope.$$childTail.$$childHead.$$childHead;
+        markerScope.$digest();
+&nbsp;
+        markerScope.options = {visible: false};
+&nbsp;
+        markerScope.$digest();
+        expect(markerScope.marker).toBeDefined();
+        expect(markerScope.marker.visible).toEqual(false);
+&nbsp;
+        var testDiv = document.getElementById("testDiv");
+        testDiv.parentNode.removeChild(testDiv);
+        scope.$destroy();
+    });
+&nbsp;
+    it('should change marker zindex', function(){
+        scope.markerPos = scope.mapPos;
+        scope.draggable = true;
+&nbsp;
+        var marker_div = document.createElement('div');
+        marker_div.setAttribute("id", "testDiv");
+        marker_div.innerHTML = '&lt;my-map center="center" zoom="zoom" options="mapOpt"&gt;&lt;my-marker id="marker1" position="markerPos" draggable="draggable" info="\'This is a marker\'"&gt;&lt;/my-marker&gt;&lt;/my-map&gt;';
+        document.body.appendChild(marker_div);
+        var markerElem = $compile(document.body)(scope);
+        scope.$digest();
+&nbsp;
+        var markerScope = scope.$$childTail.$$childHead.$$childHead;
+        markerScope.$digest();
+&nbsp;
+        markerScope.options = {zIndex: 10};
+&nbsp;
+        markerScope.$digest();
+        expect(markerScope.marker).toBeDefined();
+        expect(markerScope.marker.zIndex).toEqual(10);
+&nbsp;
+        var testDiv = document.getElementById("testDiv");
+        testDiv.parentNode.removeChild(testDiv);
+        scope.$destroy();
+    });
+&nbsp;
+    it('should change marker anchorPoint', function(){
+        scope.markerPos = scope.mapPos;
+        scope.draggable = true;
+&nbsp;
+        var marker_div = document.createElement('div');
+        marker_div.setAttribute("id", "testDiv");
+        marker_div.innerHTML = '&lt;my-map center="center" zoom="zoom" options="mapOpt"&gt;&lt;my-marker id="marker1" position="markerPos" draggable="draggable" info="\'This is a marker\'"&gt;&lt;/my-marker&gt;&lt;/my-map&gt;';
+        document.body.appendChild(marker_div);
+        var markerElem = $compile(document.body)(scope);
+        scope.$digest();
+&nbsp;
+        var markerScope = scope.$$childTail.$$childHead.$$childHead;
+        markerScope.$digest();
+&nbsp;
+        markerScope.options = {anchorPoint: new google.maps.Point(10,10)};
+&nbsp;
+        markerScope.$digest();
+        expect(markerScope.marker).toBeDefined();
+        expect(markerScope.marker.anchorPoint).toEqual(new google.maps.Point(10,10));
+&nbsp;
+        var testDiv = document.getElementById("testDiv");
+        testDiv.parentNode.removeChild(testDiv);
+        scope.$destroy();
+    });
+&nbsp;
+    /*-------------------------------------------------------
+     Polyline Tests
+     -------------------------------------------------------- */
+&nbsp;
+    it('should create a polyline without options', function(){
+        scope.line = [scope.mapPos, {lat: 32.886325, lng: -117.239278 }];
+&nbsp;
+        var polyline_div = document.createElement('div');
+        polyline_div.setAttribute("id", "testDiv");
+        polyline_div.innerHTML = '&lt;my-map center="center" zoom="zoom"&gt;&lt;my-polyline id="polyline1" path="line"&gt;&lt;/my-polyline&gt;&lt;/my-map&gt;';
+        document.body.appendChild(polyline_div);
+        var polylineElem = $compile(document.body)(scope);
+        scope.$digest();
+&nbsp;
+        var polylineScope = scope.$$childTail.$$childHead.$$childHead;
+        expect(polylineScope.polyline).toBeDefined();
+        expect(polylineScope.polyline.getPath().b[0].toUrlValue()).toEqual('32.880951,-117.233827');
+        expect(polylineScope.polyline.getPath().b[1].toUrlValue()).toEqual('32.886325,-117.239278');
+&nbsp;
+        var testDiv = document.getElementById("testDiv");
+        testDiv.parentNode.removeChild(testDiv);
+        scope.$destroy();
+    });
+&nbsp;
+    it('should create a polyline with options', function(){
+        scope.line = [scope.mapPos, {lat: 32.886325, lng: -117.239278 }];
+&nbsp;
+        var polyline_div = document.createElement('div');
+        polyline_div.setAttribute("id", "testDiv");
+        polyline_div.innerHTML = '&lt;my-map center="center" zoom="zoom" options="mapOpt"&gt;&lt;my-polyline id="polyline1" path="line" options="{strokeColor: \'red\'}"&gt;&lt;/my-polyline&gt;&lt;/my-map&gt;';
+        document.body.appendChild(polyline_div);
+        var polylineElem = $compile(document.body)(scope);
+        scope.$digest();
+&nbsp;
+        var polylineScope = scope.$$childTail.$$childHead.$$childHead;
+        expect(polylineScope.polyline).toBeDefined();
+        expect(polylineScope.polyline.getPath().b[0].toUrlValue()).toEqual('32.880951,-117.233827');
+        expect(polylineScope.polyline.getPath().b[1].toUrlValue()).toEqual('32.886325,-117.239278');
+        expect(polylineScope.polyline.strokeColor).toEqual("red");
+&nbsp;
+        var testDiv = document.getElementById("testDiv");
+        testDiv.parentNode.removeChild(testDiv);
+        scope.$destroy();
+    });
+&nbsp;
+    it('should change polyline path', function(){
+        scope.line = [scope.mapPos, {lat: 32.886325, lng: -117.239278 }];
+&nbsp;
+        var polyline_div = document.createElement('div');
+        polyline_div.setAttribute("id", "testDiv");
+        polyline_div.innerHTML = '&lt;my-map center="center" zoom="zoom" options="mapOpt"&gt;&lt;my-polyline id="polyline1" path="line"&gt;&lt;/my-polyline&gt;&lt;/my-map&gt;';
+        document.body.appendChild(polyline_div);
+        var polylineElem = $compile(document.body)(scope);
+        scope.$digest();
+&nbsp;
+        var polylineScope = scope.$$childTail.$$childHead.$$childHead;
+        polylineScope.$digest();
+&nbsp;
+        polylineScope.path = [scope.mapPos, {lat: 32.886325, lng: -117.239278 }, scope.newCenter];
+&nbsp;
+        polylineScope.$digest();
+        expect(polylineScope.polyline).toBeDefined();
+        expect(polylineScope.polyline.getPath().b[0].toUrlValue()).toEqual('32.880951,-117.233827');
+        expect(polylineScope.polyline.getPath().b[1].toUrlValue()).toEqual('32.886325,-117.239278');
+        expect(polylineScope.polyline.getPath().b[2].toUrlValue()).toEqual('32.880951,-117.25');
+&nbsp;
+        var testDiv = document.getElementById("testDiv");
+        testDiv.parentNode.removeChild(testDiv);
+        scope.$destroy();
+    });
+&nbsp;
+    it('should change polyline draggable', function(){
+        scope.line = [scope.mapPos, {lat: 32.886325, lng: -117.239278 }];
+&nbsp;
+        var polyline_div = document.createElement('div');
+        polyline_div.setAttribute("id", "testDiv");
+        polyline_div.innerHTML = '&lt;my-map center="center" zoom="zoom" options="mapOpt"&gt;&lt;my-polyline id="polyline1" path="line"&gt;&lt;/my-polyline&gt;&lt;/my-map&gt;';
+        document.body.appendChild(polyline_div);
+        var polylineElem = $compile(document.body)(scope);
+        scope.$digest();
+&nbsp;
+        var polylineScope = scope.$$childTail.$$childHead.$$childHead;
+        polylineScope.$digest();
+&nbsp;
+        polylineScope.options = {draggable: false};
+&nbsp;
+        polylineScope.$digest();
+        expect(polylineScope.polyline).toBeDefined();
+        expect(polylineScope.polyline.draggable).toEqual(false);
+&nbsp;
+        var testDiv = document.getElementById("testDiv");
+        testDiv.parentNode.removeChild(testDiv);
+        scope.$destroy();
+    });
+&nbsp;
+    it('should change polyline editable', function(){
+        scope.line = [scope.mapPos, {lat: 32.886325, lng: -117.239278 }];
+&nbsp;
+        var polyline_div = document.createElement('div');
+        polyline_div.setAttribute("id", "testDiv");
+        polyline_div.innerHTML = '&lt;my-map center="center" zoom="zoom" options="mapOpt"&gt;&lt;my-polyline id="polyline1" path="line"&gt;&lt;/my-polyline&gt;&lt;/my-map&gt;';
+        document.body.appendChild(polyline_div);
+        var polylineElem = $compile(document.body)(scope);
+        scope.$digest();
+&nbsp;
+        var polylineScope = scope.$$childTail.$$childHead.$$childHead;
+        polylineScope.$digest();
+&nbsp;
+        polylineScope.options = {editable: false};
+&nbsp;
+        polylineScope.$digest();
+        expect(polylineScope.polyline).toBeDefined();
+        expect(polylineScope.polyline.editable).toEqual(false);
+&nbsp;
+        var testDiv = document.getElementById("testDiv");
+        testDiv.parentNode.removeChild(testDiv);
+        scope.$destroy();
+    });
+&nbsp;
+    it('should change polyline editable', function(){
+        scope.line = [scope.mapPos, {lat: 32.886325, lng: -117.239278 }];
+&nbsp;
+        var polyline_div = document.createElement('div');
+        polyline_div.setAttribute("id", "testDiv");
+        polyline_div.innerHTML = '&lt;my-map center="center" zoom="zoom" options="mapOpt"&gt;&lt;my-polyline id="polyline1" path="line"&gt;&lt;/my-polyline&gt;&lt;/my-map&gt;';
+        document.body.appendChild(polyline_div);
+        var polylineElem = $compile(document.body)(scope);
+        scope.$digest();
+&nbsp;
+        var polylineScope = scope.$$childTail.$$childHead.$$childHead;
+        polylineScope.$digest();
+&nbsp;
+        polylineScope.options = {visible: false};
+&nbsp;
+        polylineScope.$digest();
+        expect(polylineScope.polyline).toBeDefined();
+        expect(polylineScope.polyline.visible).toEqual(false);
+&nbsp;
+        var testDiv = document.getElementById("testDiv");
+        testDiv.parentNode.removeChild(testDiv);
+        scope.$destroy();
+    });
+&nbsp;
+    it('should change polyline strokeColor', function(){
+        scope.line = [scope.mapPos, {lat: 32.886325, lng: -117.239278 }];
+&nbsp;
+        var polyline_div = document.createElement('div');
+        polyline_div.setAttribute("id", "testDiv");
+        polyline_div.innerHTML = '&lt;my-map center="center" zoom="zoom" options="mapOpt"&gt;&lt;my-polyline id="polyline1" path="line"&gt;&lt;/my-polyline&gt;&lt;/my-map&gt;';
+        document.body.appendChild(polyline_div);
+        var polylineElem = $compile(document.body)(scope);
+        scope.$digest();
+&nbsp;
+        var polylineScope = scope.$$childTail.$$childHead.$$childHead;
+        polylineScope.$digest();
+&nbsp;
+        polylineScope.options = {strokeColor: "red"};
+&nbsp;
+        polylineScope.$digest();
+        expect(polylineScope.polyline).toBeDefined();
+        expect(polylineScope.polyline.strokeColor).toEqual("red");
+&nbsp;
+        var testDiv = document.getElementById("testDiv");
+        testDiv.parentNode.removeChild(testDiv);
+        scope.$destroy();
+    });
+&nbsp;
+    /*-------------------------------------------------------
+     Polygon Tests
+     -------------------------------------------------------- */
+&nbsp;
+    it('should create a polygon without options', function(){
         scope.triangle = [scope.mapPos, {lat: 32.877880, lng: -117.237214 }, {lat: 32.875468, lng: -117.232348 }];
 &nbsp;
         var polygon_div = document.createElement('div');
         polygon_div.setAttribute("id", "testDiv");
-        polygon_div.innerHTML = '&lt;my-map center="center" zoom="zoom" map-opt="mapOpt"&gt;&lt;my-polygon id="polygon1" paths="triangle" fill-color="\'red\'" line-width="1" fill-opacity="1"&gt;&lt;/my-polygon&gt;&lt;/my-map&gt;';
+        polygon_div.innerHTML = '&lt;my-map center="center" zoom="zoom" options="mapOpt"&gt;&lt;my-polygon id="polygon1" paths="triangle"&gt;&lt;/my-polygon&gt;&lt;/my-map&gt;';
         document.body.appendChild(polygon_div);
         var polygonElem = $compile(document.body)(scope);
         scope.$digest();
 &nbsp;
         var polygonScope = scope.$$childTail.$$childHead.$$childHead;
         expect(polygonScope.polygon).toBeDefined();
-        expect(polygonScope.polygon.fillColor).toEqual("red");
-        expect(polygonScope.polygon.fillOpacity).toEqual(1);
-        expect(polygonScope.polygon.strokeWeight).toEqual(1);
         expect(polygonScope.polygon.getPaths().getArray()[0].b[0].toUrlValue()).toEqual('32.880951,-117.233827');
         expect(polygonScope.polygon.getPaths().getArray()[0].b[1].toUrlValue()).toEqual('32.87788,-117.237214');
         expect(polygonScope.polygon.getPaths().getArray()[0].b[2].toUrlValue()).toEqual('32.875468,-117.232348');
@@ -914,12 +3211,179 @@ describe('testing map directives', function() {
         scope.$destroy();
     });
 &nbsp;
-    it('should create a rectangle', function(){
+    it('should create a polygon with options', function(){
+        scope.triangle = [scope.mapPos, {lat: 32.877880, lng: -117.237214 }, {lat: 32.875468, lng: -117.232348 }];
+&nbsp;
+        var polygon_div = document.createElement('div');
+        polygon_div.setAttribute("id", "testDiv");
+        polygon_div.innerHTML = '&lt;my-map center="center" zoom="zoom" options="mapOpt"&gt;&lt;my-polygon id="polygon1" paths="triangle" options="{strokeColor: \'red\'}"&gt;&lt;/my-polygon&gt;&lt;/my-map&gt;';
+        document.body.appendChild(polygon_div);
+        var polygonElem = $compile(document.body)(scope);
+        scope.$digest();
+&nbsp;
+        var polygonScope = scope.$$childTail.$$childHead.$$childHead;
+        expect(polygonScope.polygon).toBeDefined();
+        expect(polygonScope.polygon.getPaths().getArray()[0].b[0].toUrlValue()).toEqual('32.880951,-117.233827');
+        expect(polygonScope.polygon.getPaths().getArray()[0].b[1].toUrlValue()).toEqual('32.87788,-117.237214');
+        expect(polygonScope.polygon.getPaths().getArray()[0].b[2].toUrlValue()).toEqual('32.875468,-117.232348');
+        expect(polygonScope.polygon.strokeColor).toEqual("red");
+&nbsp;
+        var testDiv = document.getElementById("testDiv");
+        testDiv.parentNode.removeChild(testDiv);
+        scope.$destroy();
+    });
+&nbsp;
+    it('should create polygon paths', function(){
+        scope.triangle = [scope.mapPos, {lat: 32.877880, lng: -117.237214 }, {lat: 32.875468, lng: -117.232348 }];
+&nbsp;
+        var polygon_div = document.createElement('div');
+        polygon_div.setAttribute("id", "testDiv");
+        polygon_div.innerHTML = '&lt;my-map center="center" zoom="zoom" options="mapOpt"&gt;&lt;my-polygon id="polygon1" paths="triangle"&gt;&lt;/my-polygon&gt;&lt;/my-map&gt;';
+        document.body.appendChild(polygon_div);
+        var polygonElem = $compile(document.body)(scope);
+        scope.$digest();
+&nbsp;
+        var polygonScope = scope.$$childTail.$$childHead.$$childHead;
+        polygonScope.$digest();
+&nbsp;
+        polygonScope.paths = [scope.mapPos, {lat: 32.877880, lng: -117.237214 }, scope.newCenter];
+&nbsp;
+        polygonScope.$digest();
+        expect(polygonScope.polygon).toBeDefined();
+        expect(polygonScope.polygon.getPaths().getArray()[0].b[0].toUrlValue()).toEqual('32.880951,-117.233827');
+        expect(polygonScope.polygon.getPaths().getArray()[0].b[1].toUrlValue()).toEqual('32.87788,-117.237214');
+        expect(polygonScope.polygon.getPaths().getArray()[0].b[2].toUrlValue()).toEqual('32.880951,-117.25');
+&nbsp;
+        var testDiv = document.getElementById("testDiv");
+        testDiv.parentNode.removeChild(testDiv);
+        scope.$destroy();
+    });
+&nbsp;
+    it('should create polygon draggable', function(){
+        scope.triangle = [scope.mapPos, {lat: 32.877880, lng: -117.237214 }, {lat: 32.875468, lng: -117.232348 }];
+&nbsp;
+        var polygon_div = document.createElement('div');
+        polygon_div.setAttribute("id", "testDiv");
+        polygon_div.innerHTML = '&lt;my-map center="center" zoom="zoom" options="mapOpt"&gt;&lt;my-polygon id="polygon1" paths="triangle"&gt;&lt;/my-polygon&gt;&lt;/my-map&gt;';
+        document.body.appendChild(polygon_div);
+        var polygonElem = $compile(document.body)(scope);
+        scope.$digest();
+&nbsp;
+        var polygonScope = scope.$$childTail.$$childHead.$$childHead;
+        polygonScope.$digest();
+&nbsp;
+        polygonScope.options = {draggable: false};
+&nbsp;
+        polygonScope.$digest();
+        expect(polygonScope.polygon).toBeDefined();
+        expect(polygonScope.polygon.draggable).toEqual(false);
+&nbsp;
+        var testDiv = document.getElementById("testDiv");
+        testDiv.parentNode.removeChild(testDiv);
+        scope.$destroy();
+    });
+&nbsp;
+    it('should create polygon editable', function(){
+        scope.triangle = [scope.mapPos, {lat: 32.877880, lng: -117.237214 }, {lat: 32.875468, lng: -117.232348 }];
+&nbsp;
+        var polygon_div = document.createElement('div');
+        polygon_div.setAttribute("id", "testDiv");
+        polygon_div.innerHTML = '&lt;my-map center="center" zoom="zoom" options="mapOpt"&gt;&lt;my-polygon id="polygon1" paths="triangle"&gt;&lt;/my-polygon&gt;&lt;/my-map&gt;';
+        document.body.appendChild(polygon_div);
+        var polygonElem = $compile(document.body)(scope);
+        scope.$digest();
+&nbsp;
+        var polygonScope = scope.$$childTail.$$childHead.$$childHead;
+        polygonScope.$digest();
+&nbsp;
+        polygonScope.options = {editable: false};
+&nbsp;
+        polygonScope.$digest();
+        expect(polygonScope.polygon).toBeDefined();
+        expect(polygonScope.polygon.editable).toEqual(false);
+&nbsp;
+        var testDiv = document.getElementById("testDiv");
+        testDiv.parentNode.removeChild(testDiv);
+        scope.$destroy();
+    });
+&nbsp;
+    it('should create polygon visible', function(){
+        scope.triangle = [scope.mapPos, {lat: 32.877880, lng: -117.237214 }, {lat: 32.875468, lng: -117.232348 }];
+&nbsp;
+        var polygon_div = document.createElement('div');
+        polygon_div.setAttribute("id", "testDiv");
+        polygon_div.innerHTML = '&lt;my-map center="center" zoom="zoom" options="mapOpt"&gt;&lt;my-polygon id="polygon1" paths="triangle"&gt;&lt;/my-polygon&gt;&lt;/my-map&gt;';
+        document.body.appendChild(polygon_div);
+        var polygonElem = $compile(document.body)(scope);
+        scope.$digest();
+&nbsp;
+        var polygonScope = scope.$$childTail.$$childHead.$$childHead;
+        polygonScope.$digest();
+&nbsp;
+        polygonScope.options = {visible: false};
+&nbsp;
+        polygonScope.$digest();
+        expect(polygonScope.polygon).toBeDefined();
+        expect(polygonScope.polygon.visible).toEqual(false);
+&nbsp;
+        var testDiv = document.getElementById("testDiv");
+        testDiv.parentNode.removeChild(testDiv);
+        scope.$destroy();
+    });
+&nbsp;
+    it('should create polygon strokeColor', function(){
+        scope.triangle = [scope.mapPos, {lat: 32.877880, lng: -117.237214 }, {lat: 32.875468, lng: -117.232348 }];
+&nbsp;
+        var polygon_div = document.createElement('div');
+        polygon_div.setAttribute("id", "testDiv");
+        polygon_div.innerHTML = '&lt;my-map center="center" zoom="zoom" options="mapOpt"&gt;&lt;my-polygon id="polygon1" paths="triangle"&gt;&lt;/my-polygon&gt;&lt;/my-map&gt;';
+        document.body.appendChild(polygon_div);
+        var polygonElem = $compile(document.body)(scope);
+        scope.$digest();
+&nbsp;
+        var polygonScope = scope.$$childTail.$$childHead.$$childHead;
+        polygonScope.$digest();
+&nbsp;
+        polygonScope.options = {strokeColor: "red"};
+&nbsp;
+        polygonScope.$digest();
+        expect(polygonScope.polygon).toBeDefined();
+        expect(polygonScope.polygon.strokeColor).toEqual("red");
+&nbsp;
+        var testDiv = document.getElementById("testDiv");
+        testDiv.parentNode.removeChild(testDiv);
+        scope.$destroy();
+    });
+&nbsp;
+    /*-------------------------------------------------------
+     Rectangle Tests
+     -------------------------------------------------------- */
+&nbsp;
+    it('should create a rectangle without options', function(){
         scope.rectangle = {north: 32.882937, south: 32.878531, east: -117.222145, west: -117.225922};
 &nbsp;
         var rect_div = document.createElement('div');
         rect_div.setAttribute("id", "testDiv");
-        rect_div.innerHTML = '&lt;my-map center="center" zoom="zoom" map-opt="mapOpt"&gt;&lt;my-rectangle id="rectangle1" bounds="rectangle" options="{draggable: true}"&gt;&lt;/my-rectangle&gt;&lt;/my-map&gt;';
+        rect_div.innerHTML = '&lt;my-map center="center" zoom="zoom" options="mapOpt"&gt;&lt;my-rectangle id="rectangle1" bounds="rectangle"&gt;&lt;/my-rectangle&gt;&lt;/my-map&gt;';
+        document.body.appendChild(rect_div);
+        var rectElem = $compile(document.body)(scope);
+        scope.$digest();
+&nbsp;
+        var rectScope = scope.$$childTail.$$childHead.$$childHead;
+        expect(rectScope.rectangle).toBeDefined();
+        expect(rectScope.rectangle.getBounds().toUrlValue()).toEqual('32.878531,-117.225922,32.882937,-117.222145');
+&nbsp;
+        var testDiv = document.getElementById("testDiv");
+        testDiv.parentNode.removeChild(testDiv);
+        scope.$destroy();
+    });
+&nbsp;
+    it('should create a rectangle with options', function(){
+        scope.rectangle = {north: 32.882937, south: 32.878531, east: -117.222145, west: -117.225922};
+&nbsp;
+        var rect_div = document.createElement('div');
+        rect_div.setAttribute("id", "testDiv");
+        rect_div.innerHTML = '&lt;my-map center="center" zoom="zoom" options="mapOpt"&gt;&lt;my-rectangle id="rectangle1" bounds="rectangle" options="{draggable: true}"&gt;&lt;/my-rectangle&gt;&lt;/my-map&gt;';
         document.body.appendChild(rect_div);
         var rectElem = $compile(document.body)(scope);
         scope.$digest();
@@ -934,140 +3398,12 @@ describe('testing map directives', function() {
         scope.$destroy();
     });
 &nbsp;
-    it('should create a circle', function(){
-&nbsp;
-        var cir_div = document.createElement('div');
-        cir_div.setAttribute("id", "testDiv");
-        cir_div.innerHTML = '&lt;my-map center="center" zoom="zoom" map-opt="mapOpt"&gt;&lt;my-circle id="circle1" center="mapPos" radius="1000" fill-opacity="0.05" options="{editable: true}"&gt;&lt;/my-circle&gt;&lt;/my-map&gt;';
-        document.body.appendChild(cir_div);
-        var circleElem = $compile(document.body)(scope);
-        scope.$digest();
-&nbsp;
-        var circleScope = scope.$$childTail.$$childHead.$$childHead;
-        expect(circleScope.circle).toBeDefined();
-        expect(circleScope.circle.getCenter().toUrlValue()).toEqual('32.880951,-117.233827');
-        expect(circleScope.circle.radius).toEqual(1000);
-        expect(circleScope.circle.fillOpacity).toEqual(0.05);
-        expect(circleScope.circle.editable).toEqual(true);
-&nbsp;
-        var testDiv = document.getElementById("testDiv");
-        testDiv.parentNode.removeChild(testDiv);
-        scope.$destroy();
-    });
-&nbsp;
-    it('should change marker options', function(){
-        scope.markerPos = scope.mapPos;
-        scope.draggable = true;
-&nbsp;
-        var marker_div = document.createElement('div');
-        marker_div.setAttribute("id", "testDiv");
-        marker_div.innerHTML = '&lt;my-map center="center" zoom="zoom" map-opt="mapOpt"&gt;&lt;my-marker id="marker1" position="markerPos" draggable="draggable" info="\'This is a marker\'"&gt;&lt;/my-marker&gt;&lt;/my-map&gt;';
-        document.body.appendChild(marker_div);
-        var markerElem = $compile(document.body)(scope);
-        scope.$digest();
-&nbsp;
-        var markerScope = scope.$$childTail.$$childHead.$$childHead;
-        markerScope.$digest();
-&nbsp;
-        markerScope.position = scope.newCenter;
-        markerScope.icon = 'http://image.flaticon.com/icons/png/128/91/91484.png';
-        markerScope.options = {opacity: 0.5};
-        markerScope.draggable = false;
-        markerScope.info = 'New Marker Info';
-&nbsp;
-        markerScope.$digest();
-        expect(markerScope.marker).toBeDefined();
-        expect(markerScope.marker.draggable).toEqual(false);
-        expect(markerScope.marker.getPosition().toUrlValue()).toEqual('32.880951,-117.25');
-        expect(markerScope.marker.icon).toEqual('http://image.flaticon.com/icons/png/128/91/91484.png');
-        expect(markerScope.marker._infoWin.content).toEqual('New Marker Info');
-        expect(markerScope.marker.opacity).toEqual(0.5);
-&nbsp;
-        var testDiv = document.getElementById("testDiv");
-        testDiv.parentNode.removeChild(testDiv);
-        scope.$destroy();
-    });
-&nbsp;
-    it('should change polyline options', function(){
-        scope.$destroy();
-        scope.line = [scope.mapPos, {lat: 32.886325, lng: -117.239278 }];
-&nbsp;
-        var polyline_div = document.createElement('div');
-        polyline_div.setAttribute("id", "testDiv");
-        polyline_div.innerHTML = '&lt;my-map center="center" zoom="zoom" map-opt="mapOpt"&gt;&lt;my-polyline id="polyline1" path="line" color="\'red\'" opacity="0.5" width="5"&gt;&lt;/my-polyline&gt;&lt;/my-map&gt;';
-        document.body.appendChild(polyline_div);
-        var polylineElem = $compile(document.body)(scope);
-        scope.$digest();
-&nbsp;
-        var polylineScope = scope.$$childTail.$$childHead.$$childHead;
-        polylineScope.$digest();
-&nbsp;
-        polylineScope.path = [scope.mapPos, {lat: 32.886325, lng: -117.239278 }, scope.newCenter];
-        polylineScope.options = {visible: false};
-        polylineScope.color = "black";
-        polylineScope.width = 11;
-        polylineScope.opacity = 0.1;
-&nbsp;
-        polylineScope.$digest();
-        expect(polylineScope.polyline).toBeDefined();
-        expect(polylineScope.polyline.visible).toEqual(false);
-        expect(polylineScope.polyline.strokeColor).toEqual("black");
-        expect(polylineScope.polyline.strokeWeight).toEqual(11);
-        expect(polylineScope.polyline.strokeOpacity).toEqual(0.1);
-        expect(polylineScope.polyline.getPath().b[0].toUrlValue()).toEqual('32.880951,-117.233827');
-        expect(polylineScope.polyline.getPath().b[1].toUrlValue()).toEqual('32.886325,-117.239278');
-        expect(polylineScope.polyline.getPath().b[2].toUrlValue()).toEqual('32.880951,-117.25');
-&nbsp;
-        var testDiv = document.getElementById("testDiv");
-        testDiv.parentNode.removeChild(testDiv);
-        scope.$destroy();
-    });
-&nbsp;
-    it('should create polygon options', function(){
-        scope.$destroy();
-        scope.triangle = [scope.mapPos, {lat: 32.877880, lng: -117.237214 }, {lat: 32.875468, lng: -117.232348 }];
-&nbsp;
-        var polygon_div = document.createElement('div');
-        polygon_div.setAttribute("id", "testDiv");
-        polygon_div.innerHTML = '&lt;my-map center="center" zoom="zoom" map-opt="mapOpt"&gt;&lt;my-polygon id="polygon1" paths="triangle" fill-color="\'red\'" line-width="1" fill-opacity="1"&gt;&lt;/my-polygon&gt;&lt;/my-map&gt;';
-        document.body.appendChild(polygon_div);
-        var polygonElem = $compile(document.body)(scope);
-        scope.$digest();
-&nbsp;
-        var polygonScope = scope.$$childTail.$$childHead.$$childHead;
-        polygonScope.$digest();
-&nbsp;
-        polygonScope.paths = [scope.mapPos, {lat: 32.877880, lng: -117.237214 }, scope.newCenter];
-        polygonScope.fillColor = "black";
-        polygonScope.fillOpacity = 0.4;
-        polygonScope.lineWidth = 22;
-        polygonScope.lineColor = "red";
-        polygonScope.lineOpacity = 0.3;
-        polygonScope.options = {visible: false};
-&nbsp;
-        polygonScope.$digest();
-        expect(polygonScope.polygon).toBeDefined();
-        expect(polygonScope.polygon.fillColor).toEqual("black");
-        expect(polygonScope.polygon.fillOpacity).toEqual(0.4);
-        expect(polygonScope.polygon.strokeWeight).toEqual(22);
-        expect(polygonScope.polygon.strokeColor).toEqual("red");
-        expect(polygonScope.polygon.strokeOpacity).toEqual(0.3);
-        expect(polygonScope.polygon.visible).toEqual(false);
-        expect(polygonScope.polygon.getPaths().getArray()[0].b[0].toUrlValue()).toEqual('32.880951,-117.233827');
-        expect(polygonScope.polygon.getPaths().getArray()[0].b[1].toUrlValue()).toEqual('32.87788,-117.237214');
-        expect(polygonScope.polygon.getPaths().getArray()[0].b[2].toUrlValue()).toEqual('32.880951,-117.25');
-&nbsp;
-        var testDiv = document.getElementById("testDiv");
-        testDiv.parentNode.removeChild(testDiv);
-        scope.$destroy();
-    });
-&nbsp;
-    it('should change rectangle options', function(){
+    it('should change rectangle bounds', function(){
         scope.rectangle = {north: 32.882937, south: 32.878531, east: -117.222145, west: -117.225922};
 &nbsp;
         var rect_div = document.createElement('div');
         rect_div.setAttribute("id", "testDiv");
-        rect_div.innerHTML = '&lt;my-map center="center" zoom="zoom" map-opt="mapOpt"&gt;&lt;my-rectangle id="rectangle1" bounds="rectangle" options="{draggable: true}"&gt;&lt;/my-rectangle&gt;&lt;/my-map&gt;';
+        rect_div.innerHTML = '&lt;my-map center="center" zoom="zoom" options="mapOpt"&gt;&lt;my-rectangle id="rectangle1" bounds="rectangle" options="{draggable: true}"&gt;&lt;/my-rectangle&gt;&lt;/my-map&gt;';
         document.body.appendChild(rect_div);
         var rectElem = $compile(document.body)(scope);
         scope.$digest();
@@ -1076,32 +3412,160 @@ describe('testing map directives', function() {
         rectScope.$digest();
 &nbsp;
         rectScope.bounds = {north: 32.882937, south: 32.878531, east: -117.222145, west: -117.239278};
-        rectScope.fillColor = "blue";
-        rectScope.fillOpacity = 0.4;
-        rectScope.lineWidth = 22;
-        rectScope.lineColor = "green";
-        rectScope.lineOpacity = 0.3;
-        rectScope.options = {visible: false};
 &nbsp;
         rectScope.$digest();
         expect(rectScope.rectangle).toBeDefined();
         expect(rectScope.rectangle.getBounds().toUrlValue()).toEqual('32.878531,-117.239278,32.882937,-117.222145');
-        expect(rectScope.rectangle.visible).toEqual(false);
-        expect(rectScope.rectangle.fillColor).toEqual("blue");
-        expect(rectScope.rectangle.fillOpacity).toEqual(0.4);
-        expect(rectScope.rectangle.strokeWeight).toEqual(22);
-        expect(rectScope.rectangle.strokeColor).toEqual("green");
-        expect(rectScope.rectangle.strokeOpacity).toEqual(0.3);
 &nbsp;
         var testDiv = document.getElementById("testDiv");
         testDiv.parentNode.removeChild(testDiv);
         scope.$destroy();
     });
 &nbsp;
-    it('should change circle options', function(){
+    it('should change rectangle draggable', function(){
+        scope.rectangle = {north: 32.882937, south: 32.878531, east: -117.222145, west: -117.225922};
+&nbsp;
+        var rect_div = document.createElement('div');
+        rect_div.setAttribute("id", "testDiv");
+        rect_div.innerHTML = '&lt;my-map center="center" zoom="zoom" options="mapOpt"&gt;&lt;my-rectangle id="rectangle1" bounds="rectangle" options="{draggable: true}"&gt;&lt;/my-rectangle&gt;&lt;/my-map&gt;';
+        document.body.appendChild(rect_div);
+        var rectElem = $compile(document.body)(scope);
+        scope.$digest();
+&nbsp;
+        var rectScope = scope.$$childTail.$$childHead.$$childHead;
+        rectScope.$digest();
+&nbsp;
+        rectScope.options = {draggable: false};
+&nbsp;
+        rectScope.$digest();
+        expect(rectScope.rectangle).toBeDefined();
+        expect(rectScope.rectangle.draggable).toEqual(false);
+&nbsp;
+        var testDiv = document.getElementById("testDiv");
+        testDiv.parentNode.removeChild(testDiv);
+        scope.$destroy();
+    });
+&nbsp;
+    it('should change rectangle editable', function(){
+        scope.rectangle = {north: 32.882937, south: 32.878531, east: -117.222145, west: -117.225922};
+&nbsp;
+        var rect_div = document.createElement('div');
+        rect_div.setAttribute("id", "testDiv");
+        rect_div.innerHTML = '&lt;my-map center="center" zoom="zoom" options="mapOpt"&gt;&lt;my-rectangle id="rectangle1" bounds="rectangle" options="{draggable: true}"&gt;&lt;/my-rectangle&gt;&lt;/my-map&gt;';
+        document.body.appendChild(rect_div);
+        var rectElem = $compile(document.body)(scope);
+        scope.$digest();
+&nbsp;
+        var rectScope = scope.$$childTail.$$childHead.$$childHead;
+        rectScope.$digest();
+&nbsp;
+        rectScope.options = {editable: false};
+&nbsp;
+        rectScope.$digest();
+        expect(rectScope.rectangle).toBeDefined();
+        expect(rectScope.rectangle.editable).toEqual(false);
+&nbsp;
+        var testDiv = document.getElementById("testDiv");
+        testDiv.parentNode.removeChild(testDiv);
+        scope.$destroy();
+    });
+&nbsp;
+    it('should change rectangle visible', function(){
+        scope.rectangle = {north: 32.882937, south: 32.878531, east: -117.222145, west: -117.225922};
+&nbsp;
+        var rect_div = document.createElement('div');
+        rect_div.setAttribute("id", "testDiv");
+        rect_div.innerHTML = '&lt;my-map center="center" zoom="zoom" options="mapOpt"&gt;&lt;my-rectangle id="rectangle1" bounds="rectangle" options="{draggable: true}"&gt;&lt;/my-rectangle&gt;&lt;/my-map&gt;';
+        document.body.appendChild(rect_div);
+        var rectElem = $compile(document.body)(scope);
+        scope.$digest();
+&nbsp;
+        var rectScope = scope.$$childTail.$$childHead.$$childHead;
+        rectScope.$digest();
+&nbsp;
+        rectScope.options = {visible: false};
+&nbsp;
+        rectScope.$digest();
+        expect(rectScope.rectangle).toBeDefined();
+        expect(rectScope.rectangle.visible).toEqual(false);
+&nbsp;
+        var testDiv = document.getElementById("testDiv");
+        testDiv.parentNode.removeChild(testDiv);
+        scope.$destroy();
+    });
+&nbsp;
+    it('should change rectangle strokeColor', function(){
+        scope.rectangle = {north: 32.882937, south: 32.878531, east: -117.222145, west: -117.225922};
+&nbsp;
+        var rect_div = document.createElement('div');
+        rect_div.setAttribute("id", "testDiv");
+        rect_div.innerHTML = '&lt;my-map center="center" zoom="zoom" options="mapOpt"&gt;&lt;my-rectangle id="rectangle1" bounds="rectangle" options="{draggable: true}"&gt;&lt;/my-rectangle&gt;&lt;/my-map&gt;';
+        document.body.appendChild(rect_div);
+        var rectElem = $compile(document.body)(scope);
+        scope.$digest();
+&nbsp;
+        var rectScope = scope.$$childTail.$$childHead.$$childHead;
+        rectScope.$digest();
+&nbsp;
+        rectScope.options = {strokeColor: "red"};
+&nbsp;
+        rectScope.$digest();
+        expect(rectScope.rectangle).toBeDefined();
+        expect(rectScope.rectangle.strokeColor).toEqual("red");
+&nbsp;
+        var testDiv = document.getElementById("testDiv");
+        testDiv.parentNode.removeChild(testDiv);
+        scope.$destroy();
+    });
+&nbsp;
+&nbsp;
+    /*-------------------------------------------------------
+     Circle Tests
+     -------------------------------------------------------- */
+&nbsp;
+    it('should create a circle without options', function(){
+&nbsp;
         var cir_div = document.createElement('div');
         cir_div.setAttribute("id", "testDiv");
-        cir_div.innerHTML = '&lt;my-map center="center" zoom="zoom" map-opt="mapOpt"&gt;&lt;my-circle id="circle1" center="mapPos" radius="1000" fill-opacity="0.05" options="{editable: true}" line-color="\'red\'" line-opacity="1"&gt;&lt;/my-circle&gt;&lt;/my-map&gt;';
+        cir_div.innerHTML = '&lt;my-map center="center" zoom="zoom" options="mapOpt"&gt;&lt;my-circle id="circle1" center="mapPos" radius="1000"&gt;&lt;/my-circle&gt;&lt;/my-map&gt;';
+        document.body.appendChild(cir_div);
+        var circleElem = $compile(document.body)(scope);
+        scope.$digest();
+&nbsp;
+        var circleScope = scope.$$childTail.$$childHead.$$childHead;
+        expect(circleScope.circle).toBeDefined();
+        expect(circleScope.circle.getCenter().toUrlValue()).toEqual('32.880951,-117.233827');
+        expect(circleScope.circle.radius).toEqual(1000);
+&nbsp;
+        var testDiv = document.getElementById("testDiv");
+        testDiv.parentNode.removeChild(testDiv);
+        scope.$destroy();
+    });
+&nbsp;
+    it('should create a circle with options', function(){
+&nbsp;
+        var cir_div = document.createElement('div');
+        cir_div.setAttribute("id", "testDiv");
+        cir_div.innerHTML = '&lt;my-map center="center" zoom="zoom" options="mapOpt"&gt;&lt;my-circle id="circle1" center="mapPos" radius="1000" options="{editable: true}"&gt;&lt;/my-circle&gt;&lt;/my-map&gt;';
+        document.body.appendChild(cir_div);
+        var circleElem = $compile(document.body)(scope);
+        scope.$digest();
+&nbsp;
+        var circleScope = scope.$$childTail.$$childHead.$$childHead;
+        expect(circleScope.circle).toBeDefined();
+        expect(circleScope.circle.getCenter().toUrlValue()).toEqual('32.880951,-117.233827');
+        expect(circleScope.circle.radius).toEqual(1000);
+        expect(circleScope.circle.editable).toEqual(true);
+&nbsp;
+        var testDiv = document.getElementById("testDiv");
+        testDiv.parentNode.removeChild(testDiv);
+        scope.$destroy();
+    });
+&nbsp;
+    it('should change circle center', function(){
+        var cir_div = document.createElement('div');
+        cir_div.setAttribute("id", "testDiv");
+        cir_div.innerHTML = '&lt;my-map center="center" zoom="zoom" options="mapOpt"&gt;&lt;my-circle id="circle1" center="mapPos" radius="1000" options="{editable: true}"&gt;&lt;/my-circle&gt;&lt;/my-map&gt;';
         document.body.appendChild(cir_div);
         var circleElem = $compile(document.body)(scope);
         scope.$digest();
@@ -1109,23 +3573,93 @@ describe('testing map directives', function() {
         var circleScope = scope.$$childTail.$$childHead.$$childHead;
         circleScope.$digest();
         circleScope.center = scope.newCenter;
-        circleScope.radius = 500;
-        circleScope.fillColor = "blue";
-        circleScope.fillOpacity = 0.4;
-        circleScope.lineWidth = 22;
-        circleScope.lineColor = "green";
-        circleScope.lineOpacity = 0.3;
-        circleScope.options = {visible: false};
 &nbsp;
         circleScope.$digest();
         expect(circleScope.circle).toBeDefined();
         expect(circleScope.circle.getCenter().toUrlValue()).toEqual('32.880951,-117.25');
+&nbsp;
+        var testDiv = document.getElementById("testDiv");
+        testDiv.parentNode.removeChild(testDiv);
+        scope.$destroy();
+    });
+&nbsp;
+    it('should change circle radius', function(){
+        var cir_div = document.createElement('div');
+        cir_div.setAttribute("id", "testDiv");
+        cir_div.innerHTML = '&lt;my-map center="center" zoom="zoom" options="mapOpt"&gt;&lt;my-circle id="circle1" center="mapPos" radius="1000" options="{editable: true}"&gt;&lt;/my-circle&gt;&lt;/my-map&gt;';
+        document.body.appendChild(cir_div);
+        var circleElem = $compile(document.body)(scope);
+        scope.$digest();
+&nbsp;
+        var circleScope = scope.$$childTail.$$childHead.$$childHead;
+        circleScope.$digest();
+        circleScope.radius = 500;
+&nbsp;
+        circleScope.$digest();
+        expect(circleScope.circle).toBeDefined();
         expect(circleScope.circle.radius).toEqual(500);
-        expect(circleScope.circle.fillColor).toEqual("blue");
-        expect(circleScope.circle.fillOpacity).toEqual(0.4);
-        expect(circleScope.circle.strokeWeight).toEqual(22);
-        expect(circleScope.circle.strokeColor).toEqual("green");
-        expect(circleScope.circle.strokeOpacity).toEqual(0.3);
+&nbsp;
+        var testDiv = document.getElementById("testDiv");
+        testDiv.parentNode.removeChild(testDiv);
+        scope.$destroy();
+    });
+&nbsp;
+    it('should change circle draggable', function(){
+        var cir_div = document.createElement('div');
+        cir_div.setAttribute("id", "testDiv");
+        cir_div.innerHTML = '&lt;my-map center="center" zoom="zoom" options="mapOpt"&gt;&lt;my-circle id="circle1" center="mapPos" radius="1000" options="{editable: true}"&gt;&lt;/my-circle&gt;&lt;/my-map&gt;';
+        document.body.appendChild(cir_div);
+        var circleElem = $compile(document.body)(scope);
+        scope.$digest();
+&nbsp;
+        var circleScope = scope.$$childTail.$$childHead.$$childHead;
+        circleScope.$digest();
+        circleScope.options = {draggable: false};
+&nbsp;
+        circleScope.$digest();
+        expect(circleScope.circle).toBeDefined();
+        expect(circleScope.circle.draggable).toEqual(false);
+&nbsp;
+        var testDiv = document.getElementById("testDiv");
+        testDiv.parentNode.removeChild(testDiv);
+        scope.$destroy();
+    });
+&nbsp;
+    it('should change circle editable', function(){
+        var cir_div = document.createElement('div');
+        cir_div.setAttribute("id", "testDiv");
+        cir_div.innerHTML = '&lt;my-map center="center" zoom="zoom" options="mapOpt"&gt;&lt;my-circle id="circle1" center="mapPos" radius="1000" options="{editable: true}"&gt;&lt;/my-circle&gt;&lt;/my-map&gt;';
+        document.body.appendChild(cir_div);
+        var circleElem = $compile(document.body)(scope);
+        scope.$digest();
+&nbsp;
+        var circleScope = scope.$$childTail.$$childHead.$$childHead;
+        circleScope.$digest();
+        circleScope.options = {editable: false};
+&nbsp;
+        circleScope.$digest();
+        expect(circleScope.circle).toBeDefined();
+        expect(circleScope.circle.editable).toEqual(false);
+&nbsp;
+        var testDiv = document.getElementById("testDiv");
+        testDiv.parentNode.removeChild(testDiv);
+        scope.$destroy();
+    });
+&nbsp;
+    it('should change circle visible', function(){
+        var cir_div = document.createElement('div');
+        cir_div.setAttribute("id", "testDiv");
+        cir_div.innerHTML = '&lt;my-map center="center" zoom="zoom" options="mapOpt"&gt;&lt;my-circle id="circle1" center="mapPos" radius="1000" options="{editable: true}"&gt;&lt;/my-circle&gt;&lt;/my-map&gt;';
+        document.body.appendChild(cir_div);
+        var circleElem = $compile(document.body)(scope);
+        scope.$digest();
+&nbsp;
+        var circleScope = scope.$$childTail.$$childHead.$$childHead;
+        circleScope.$digest();
+        circleScope.options = {visible: false};
+&nbsp;
+        circleScope.$digest();
+        expect(circleScope.circle).toBeDefined();
         expect(circleScope.circle.visible).toEqual(false);
 &nbsp;
         var testDiv = document.getElementById("testDiv");
@@ -1133,45 +3667,34 @@ describe('testing map directives', function() {
         scope.$destroy();
     });
 &nbsp;
-&nbsp;
-    it('should change map options', function() {
-        var map_div = document.createElement("div");
-        map_div.setAttribute("id", "testDiv");
-        map_div.innerHTML = '&lt;my-map center="center" zoom="zoom" map-opt="mapOpt"&gt;&lt;/my-map&gt;';
-        document.body.appendChild(map_div);
-        var directiveElem = $compile(document.body)(scope);
+    it('should change circle strokeColor', function(){
+        var cir_div = document.createElement('div');
+        cir_div.setAttribute("id", "testDiv");
+        cir_div.innerHTML = '&lt;my-map center="center" zoom="zoom" options="mapOpt"&gt;&lt;my-circle id="circle1" center="mapPos" radius="1000" options="{editable: true}"&gt;&lt;/my-circle&gt;&lt;/my-map&gt;';
+        document.body.appendChild(cir_div);
+        var circleElem = $compile(document.body)(scope);
         scope.$digest();
 &nbsp;
-        var mapScope = scope.$$childHead;
+        var circleScope = scope.$$childTail.$$childHead.$$childHead;
+        circleScope.$digest();
+        circleScope.options = {strokeColor: "red"};
 &nbsp;
-        mapScope.$digest();
-        mapScope.center = scope.newCenter;
-        mapScope.zoom = scope.newZoom;
-        mapScope.mapOpt = scope.newOpt;
-&nbsp;
-        mapScope.$digest();
-        console.log(mapScope);
-        expect(scope.map).toBeDefined();
-        expect(scope.map.zoom).toEqual(9);
-        expect(scope.map.getCenter().toUrlValue()).toEqual('32.880951,-117.25');
-        expect(scope.map.draggable).toEqual(false);
+        circleScope.$digest();
+        expect(circleScope.circle).toBeDefined();
+        expect(circleScope.circle.strokeColor).toEqual("red");
 &nbsp;
         var testDiv = document.getElementById("testDiv");
         testDiv.parentNode.removeChild(testDiv);
         scope.$destroy();
     });
-&nbsp;
-&nbsp;
 });
-&nbsp;
-//ng-repeat vs array -- destroy scope when using it
 &nbsp;</pre></td></tr>
 </table></pre>
 <div class='push'></div><!-- for sticky footer -->
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Feb 20 2017 22:46:53 GMT-0800 (Pacific Standard Time)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sun Feb 26 2017 16:59:42 GMT-0800 (Pacific Standard Time)
 </div>
 </div>
 <script src="../prettify.js"></script>

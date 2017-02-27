@@ -5,7 +5,7 @@
 </style>
 <button id="changeCenter" type="button" ng-click="changeAttribute('map1', 'center', newCenter)">Change Map Center</button>
 <button id="changeZoom" type="button" ng-click="changeAttribute('map1', 'zoom', newZoom)">Change Map Zoom</button>
-<button id="changeOptions" type="button" ng-click="changeAttribute('map1', 'mapOpt', newOpt)">Change Map Options</button>
+<button id="changeOptions" type="button" ng-click="changeAttribute('map1', 'options', newOpt)">Change Map Options</button>
 <br>
 <button id="changeMarkerPos" type="button" ng-click="changeAttribute('marker1', 'position', newMarkerPos)">Change Marker Position</button>
 <button id="changeMarkerDrag" type="button" ng-click="changeAttribute('marker1', 'draggable', false)">Toggle Marker Draggable</button>
@@ -15,44 +15,26 @@
 <button id="deleteMarker" type="button" ng-click="deleteRender('marker1')">Delete Marker</button>
 <br>
 <button id="changeLinePath" type="button" ng-click="changeAttribute('polyline1', 'path', newLine)">Change PolyLine Path</button>
-<button id="changeLineColor" type="button" ng-click="changeAttribute('polyline1', 'color', 'black ')">Change PolyLine Color</button>
-<button id="changeLineWidth" type="button" ng-click="changeAttribute('polyline1', 'width', '10')">Change PolyLine Width</button>
-<button id="changeLineOpacity" type="button" ng-click="changeAttribute('polyline1', 'opacity', '1')">Change PolyLine Opacity</button>
 <button id="changeLineOptions" type="button" ng-click="changeAttribute('polyline1', 'options', newShapeOpt)">Change PolyLine Options</button>
 <button id="deleteLine" type="button" ng-click="deleteRender('polyline1')">Delete Line</button>
 <br>
 <button id="changePolygonPath" type="button" ng-click="changeAttribute('polygon1', 'paths', newTriangle)">Change Polygon Path</button>
-<button id="changePolygonFillColor" type="button" ng-click="changeAttribute('polygon1', 'fillColor', 'black')">Change Polygon Fill Color</button>
-<button id="changePolygonFillOpacity" type="button" ng-click="changeAttribute('polygon1', 'fillOpacity', '0.5')">Change Polygon Fill Opacity</button>
-<button id="changePolygonWidth" type="button" ng-click="changeAttribute('polygon1', 'lineWidth', '10')">Change Polygon Width</button>
-<button id="changePolygonColor" type="button" ng-click="changeAttribute('polygon1', 'lineColor', 'blue')">Change Polygon Color</button>
-<button id="changePolygonOpacity" type="button" ng-click="changeAttribute('polygon1', 'lineOpacity', '0.2')">Change Polygon Opacity</button>
 <button id="changePolygonOptions" type="button" ng-click="changeAttribute('polygon1', 'options', newShapeOpt)">Change Polygon Options</button>
 <button id="deletePolygon" type="button" ng-click="deleteRender('polygon1')">Delete Polygon</button>
 <br>
 <button id="changeRectBounds" type="button" ng-click="changeAttribute('rectangle1', 'bounds', newRectangle)">Change Rectangle Bounds</button>
-<button id="changeRectFillColor" type="button" ng-click="changeAttribute('rectangle1', 'fillColor', 'red')">Change Rectangle Fill Color</button>
-<button id="changeRectFillOpacity" type="button" ng-click="changeAttribute('rectangle1', 'fillOpacity', '1')">Change Rectangle Fill Opacity</button>
-<button id="changeRectLineWidth" type="button" ng-click="changeAttribute('rectangle1', 'lineWidth', '5')">Change Rectangle Width</button>
-<button id="changeRectLineColor" type="button" ng-click="changeAttribute('rectangle1', 'lineColor', 'blue')">Change Rectangle Color</button>
-<button id="changeRectLintOpacity" type="button" ng-click="changeAttribute('rectangle1', 'lineOpacity', '0.5')">Change Rectangle Opacity</button>
 <button id="changeRectOptions" type="button" ng-click="changeAttribute('rectangle1', 'options', newShapeOpt)">Change Rectangle Options</button>
 <button id="deleteRect" type="button" ng-click="deleteRender('rectangle1')">Delete Rectangle</button>
 <br>
 <button id="changeCircleCenter" type="button" ng-click="changeAttribute('circle1', 'center', newCenter )">Change Circle Center</button>
 <button id="changeCircleRadius" type="button" ng-click="changeAttribute('circle1', 'radius', 2000)">Change Circle Radius</button>
-<button id="changeCircleFillColor" type="button" ng-click="changeAttribute('circle1', 'fillColor', 'green')">Change Circle Fill Color</button>
-<button id="changeCircleFillOpacity" type="button" ng-click="changeAttribute('circle1', 'fillOpacity', '1')">Change Circle Fill Opacity</button>
-<button id="changeCircleWidth" type="button" ng-click="changeAttribute('circle1', 'lineWidth', '10')">Change Circle Width</button>
-<button id="changeCircleColor" type="button" ng-click="changeAttribute('circle1', 'lineColor', 'blue')">Change Circle Color</button>
-<button id="changeCircleOpacity" type="button" ng-click="changeAttribute('circle1', 'lineOpacity', '0.2')">Change Circle Opacity</button>
 <button id="changeCircleOptions" type="button" ng-click="changeAttribute('circle1', 'options', newShapeOpt)">Change Circle Options</button>
 <button id="deleteCircle" type="button" ng-click="deleteRender('circle1')">Delete Circle</button>
 
-<my-map id="map1" center="center" zoom="zoom" map-opt="mapOpt">
+<my-map id="map1" center="center" zoom="zoom" options="mapOpt">
     <my-marker id="marker1" position="markerPos" draggable="draggable" info="'This is a marker'"></my-marker>
-    <my-polyline id="polyline1" path="line" color="'red'" opacity="0.5" width="5"></my-polyline>
-    <my-polygon id="polygon1" paths="triangle" fill-color="'red'" line-width="1" fill-opacity="1"></my-polygon>
+    <my-polyline id="polyline1" path="line"></my-polyline>
+    <my-polygon id="polygon1" paths="triangle"></my-polygon>
     <my-rectangle id="rectangle1" bounds="rectangle" options="{draggable: true}"></my-rectangle>
-    <my-circle id="circle1" center="mapPos" radius="1000" fill-opacity="0.05" options="{editable: true}"></my-circle>
+    <my-circle id="circle1" center="mapPos" radius="1000" options="{editable: true}"></my-circle>
 </my-map>
