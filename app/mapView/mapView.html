@@ -30,6 +30,21 @@
 <button id="changeCircleRadius" type="button" ng-click="changeAttribute('circle1', 'radius', 2000)">Change Circle Radius</button>
 <button id="changeCircleOptions" type="button" ng-click="changeAttribute('circle1', 'options', newShapeOpt)">Change Circle Options</button>
 <button id="deleteCircle" type="button" ng-click="deleteRender('circle1')">Delete Circle</button>
+<br>
+<button id="addMarkers" type="button" ng-click="addNewRender('marker')">Add Marker to list</button>
+<button id="deleteMarkers" type="button" ng-click="deleteLastRender('marker')">Delete Marker from list</button>
+<br>
+<button id="addPolylines" type="button" ng-click="addNewRender('polyline')">Add Polyline to list</button>
+<button id="deletePolylines" type="button" ng-click="deleteLastRender('polyline')">Delete Polyline from list</button>
+<br>
+<button id="addPolygons" type="button" ng-click="addNewRender('polygon')">Add Polygon to list</button>
+<button id="deletePolygons" type="button" ng-click="deleteLastRender('polygon')">Delete Polygon from list</button>
+<br>
+<button id="addRectangles" type="button" ng-click="addNewRender('rectangle')">Add Rectangle to list</button>
+<button id="deleteRectangles" type="button" ng-click="deleteLastRender('rectangle')">Delete Rectangle from list</button>
+<br>
+<button id="addCircles" type="button" ng-click="addNewRender('circle')">Add Circle to list</button>
+<button id="deleteCircles" type="button" ng-click="deleteLastRender('circle')">Delete Circle from list</button>
 
 <my-map id="map1" center="center" zoom="zoom" options="mapOpt">
     <my-marker id="marker1" position="markerPos" draggable="draggable" info="'This is a marker'"></my-marker>
@@ -37,4 +52,10 @@
     <my-polygon id="polygon1" paths="triangle"></my-polygon>
     <my-rectangle id="rectangle1" bounds="rectangle" options="{draggable: true}"></my-rectangle>
     <my-circle id="circle1" center="mapPos" radius="1000" options="{editable: true}"></my-circle>
+
+    <my-marker ng-repeat="marker in markers track by $index" position="marker"></my-marker>
+    <my-polyline ng-repeat="polyline in lines track by $index" path="polyline"></my-polyline>
+    <my-polygon ng-repeat="triangle in triangles track by $index" paths="triangle"></my-polygon>
+    <my-rectangle ng-repeat="rect in rectangles track by $index" bounds="rect"></my-rectangle>
+    <my-circle ng-repeat="circle in circles track by $index" center="circle.center" radius="circle.radius"></my-circle>
 </my-map>

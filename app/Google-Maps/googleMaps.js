@@ -86,11 +86,14 @@ angular.module('Google-Maps', [])
 
                         case "polygon":
                             options.paths = scope.paths;
+                            console.log(options);
+
                             newObject = new google.maps.Polygon(options);
                             break;
 
                         case "rectangle":
                             options.bounds = scope.bounds;
+                            console.log(options);
                             newObject = new google.maps.Rectangle(options);
                             break;
                     }
