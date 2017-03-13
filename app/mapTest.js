@@ -353,6 +353,32 @@ describe('testing map directives', function() {
         expect(markerScope.marker.anchorPoint).toEqual(new google.maps.Point(10,10));
     });
 
+    it('should create a marker within a collection', function(){
+        scope.markers = [{lat: 32.878665, lng: -117.240544}, {lat: 32.881143, lng: -117.237379}, {lat: 32.881810, lng: -117.233517}];
+
+        createElem('<my-map center="center" zoom="zoom" options="mapOpt"><my-marker ng-repeat="marker in markers track by $index" position="marker"></my-marker></my-map>');
+
+        scope.markers.push({lat: 32.884115, lng: -117.229351});
+        scope.$digest();
+
+        var markerScope = scope.$$childHead.$$childHead.$$childTail.$$childHead;
+        expect(markerScope.marker).toBeDefined();
+        expect(markerScope.marker.getPosition().toUrlValue()).toEqual('32.884115,-117.229351');
+    });
+
+    it('should delete a marker within a collection', function(){
+        scope.markers = [{lat: 32.878665, lng: -117.240544}, {lat: 32.881143, lng: -117.237379}, {lat: 32.881810, lng: -117.233517}];
+
+        createElem('<my-map center="center" zoom="zoom" options="mapOpt"><my-marker ng-repeat="marker in markers track by $index" position="marker"></my-marker></my-map>');
+
+        scope.markers.pop();
+        scope.$digest();
+
+        var markerScope = scope.$$childHead.$$childHead.$$childTail.$$childHead;
+        expect(markerScope.marker).toBeDefined();
+        expect(markerScope.marker.getPosition().toUrlValue()).toEqual('32.881143,-117.237379');
+    });
+
     /*-------------------------------------------------------
      Polyline Tests
      -------------------------------------------------------- */
@@ -455,6 +481,34 @@ describe('testing map directives', function() {
         polylineScope.$digest();
         expect(polylineScope.polyline).toBeDefined();
         expect(polylineScope.polyline.strokeColor).toEqual("red");
+    });
+
+    it('should create a polyline within a collection', function(){
+        scope.lines = [[{lat: 32.878665, lng: -117.240544}, {lat: 32.881143, lng: -117.237379}], [{lat: 32.878665, lng: -117.240544}, {lat: 32.881810, lng: -117.233517}]];
+
+        createElem('<my-map center="center" zoom="zoom" options="mapOpt"><my-polyline ng-repeat="polyline in lines track by $index" path="polyline"></my-polyline></my-map>');
+
+        scope.lines.push([{lat: 32.880601, lng: -117.242977}, {lat: 32.881810, lng: -117.233517}]);
+        scope.$digest();
+
+        var polylineScope = scope.$$childHead.$$childHead.$$childTail.$$childHead;
+        expect(polylineScope.polyline).toBeDefined();
+        expect(polylineScope.polyline.getPath().b[0].toUrlValue()).toEqual('32.880601,-117.242977');
+        expect(polylineScope.polyline.getPath().b[1].toUrlValue()).toEqual('32.88181,-117.233517');
+    });
+
+    it('should delete a marker within a collection', function(){
+        scope.lines = [[{lat: 32.878665, lng: -117.240544}, {lat: 32.881143, lng: -117.237379}], [{lat: 32.878665, lng: -117.240544}, {lat: 32.881810, lng: -117.233517}]];
+
+        createElem('<my-map center="center" zoom="zoom" options="mapOpt"><my-polyline ng-repeat="polyline in lines track by $index" path="polyline"></my-polyline></my-map>');
+
+        scope.lines.pop();
+        scope.$digest();
+
+        var polylineScope = scope.$$childHead.$$childHead.$$childTail.$$childHead;
+        expect(polylineScope.polyline).toBeDefined();
+        expect(polylineScope.polyline.getPath().b[0].toUrlValue()).toEqual('32.878665,-117.240544');
+        expect(polylineScope.polyline.getPath().b[1].toUrlValue()).toEqual('32.881143,-117.237379');
     });
 
     /*-------------------------------------------------------
@@ -563,6 +617,36 @@ describe('testing map directives', function() {
         expect(polygonScope.polygon.strokeColor).toEqual("red");
     });
 
+    it('should create a polygon within a collection', function(){
+        scope.triangles = [[{lat: 32.883763, lng: -117.244426}, {lat: 32.888237, lng: -117.242524}, {lat: 32.885381, lng: -117.241022}],
+                           [{lat: 32.885339, lng: -117.239140}, {lat: 32.883988, lng: -117.241114}, {lat: 32.883718, lng: -117.239784}]];
+        createElem('<my-map center="center" zoom="zoom" options="mapOpt"><my-polygon ng-repeat="triangle in triangles track by $index" paths="triangle"></my-polygon></my-map>');
+
+        scope.triangles.push([{lat: 32.878501, lng: -117.241694}, {lat: 32.875500, lng: -117.242756}, {lat: 32.874022, lng: -117.236533}]);
+        scope.$digest();
+
+        var polygonScope = scope.$$childHead.$$childHead.$$childTail.$$childHead;
+        expect(polygonScope.polygon).toBeDefined();
+        expect(polygonScope.polygon.getPaths().getArray()[0].b[0].toUrlValue()).toEqual('32.878501,-117.241694');
+        expect(polygonScope.polygon.getPaths().getArray()[0].b[1].toUrlValue()).toEqual('32.8755,-117.242756');
+        expect(polygonScope.polygon.getPaths().getArray()[0].b[2].toUrlValue()).toEqual('32.874022,-117.236533');
+    });
+
+    it('should delete a polygon within a collection', function(){
+        scope.triangles = [[{lat: 32.883763, lng: -117.244426}, {lat: 32.888237, lng: -117.242524}, {lat: 32.885381, lng: -117.241022}],
+            [{lat: 32.885339, lng: -117.239140}, {lat: 32.883988, lng: -117.241114}, {lat: 32.883718, lng: -117.239784}]];
+        createElem('<my-map center="center" zoom="zoom" options="mapOpt"><my-polygon ng-repeat="triangle in triangles track by $index" paths="triangle"></my-polygon></my-map>');
+
+        scope.triangles.pop();
+        scope.$digest();
+
+        var polygonScope = scope.$$childHead.$$childHead.$$childTail.$$childHead;
+        expect(polygonScope.polygon).toBeDefined();
+        expect(polygonScope.polygon.getPaths().getArray()[0].b[0].toUrlValue()).toEqual('32.883763,-117.244426');
+        expect(polygonScope.polygon.getPaths().getArray()[0].b[1].toUrlValue()).toEqual('32.888237,-117.242524');
+        expect(polygonScope.polygon.getPaths().getArray()[0].b[2].toUrlValue()).toEqual('32.885381,-117.241022');
+    });
+
     /*-------------------------------------------------------
      Rectangle Tests
      -------------------------------------------------------- */
@@ -663,6 +747,34 @@ describe('testing map directives', function() {
         expect(rectScope.rectangle.strokeColor).toEqual("red");
     });
 
+    it('should create a rectangle within a collection', function(){
+        scope.rectangles = [{north: 32.880500, south: 32.878851, east: -117.241672, west: -117.243260},
+                             {north: 32.873742, south: 32.871075, east: -117.233196, west: -117.236554}];
+
+        createElem('<my-map center="center" zoom="zoom" options="mapOpt"><my-rectangle ng-repeat="rect in rectangles track by $index" bounds="rect"></my-rectangle></my-map>');
+
+        scope.rectangles.push({north: 32.894443, south: 32.891533, east: -117.237853, west: -117.242112});
+        scope.$digest();
+
+        var rectScope = scope.$$childHead.$$childHead.$$childTail.$$childHead;
+        expect(rectScope.rectangle).toBeDefined();
+        expect(rectScope.rectangle.getBounds().toUrlValue()).toEqual('32.891533,-117.242112,32.894443,-117.237853');
+    });
+
+    it('should delete a rectangle within a collection', function(){
+        scope.rectangles = [{north: 32.880500, south: 32.878851, east: -117.241672, west: -117.243260},
+            {north: 32.873742, south: 32.871075, east: -117.233196, west: -117.236554}];
+
+        createElem('<my-map center="center" zoom="zoom" options="mapOpt"><my-rectangle ng-repeat="rect in rectangles track by $index" bounds="rect"></my-rectangle></my-map>');
+
+        scope.rectangles.pop();
+        scope.$digest();
+
+        var rectScope = scope.$$childHead.$$childHead.$$childTail.$$childHead;
+        expect(rectScope.rectangle).toBeDefined();
+        expect(rectScope.rectangle.getBounds().toUrlValue()).toEqual('32.878851,-117.24326,32.8805,-117.241672');
+    });
+
 
     /*-------------------------------------------------------
      Circle Tests
@@ -759,24 +871,33 @@ describe('testing map directives', function() {
         expect(circleScope.circle.strokeColor).toEqual("red");
     });
 
-    it('should create a marker within a collection', function(){
-        scope.$destroy();
-        scope.markers = [{lat: 32.878665, lng: -117.240544}, {lat: 32.881143, lng: -117.237379}, {lat: 32.881810, lng: -117.233517}];
+    it('should create a circle within a collection', function(){
+        scope.circles = [{center: {lat: 32.872113, lng: -117.241011}, radius: 300}, {center: {lat: 32.873827, lng: -117.226570}, radius: 500}];
 
-        var marker_div = document.createElement('div');
-        marker_div.setAttribute("id", "testDiv");
-        marker_div.innerHTML = '<my-map center="center" zoom="zoom" options="mapOpt"><my-marker ng-repeat="marker in markers" position="marker"></my-marker></my-map>';
-        document.body.appendChild(marker_div);
-        var markerElem = $compile(document.body)(scope);
+        createElem('<my-map center="center" zoom="zoom" options="mapOpt"><my-circle ng-repeat="circle in circles track by $index" center="circle.center" radius="circle.radius"></my-circle></my-map>');
+
+        scope.circles.push({center: {lat: 32.874692, lng: -117.232332}, radius: 200});
         scope.$digest();
 
-        console.log(scope);
-        var markerScope = scope.$$childTail.$$childHead.$$childHead;
-        // expect(markerScope.marker).toBeDefined();
-        // expect(markerScope.marker.getPosition().toUrlValue()).toEqual('32.880951,-117.233827');
+        var circleScope = scope.$$childHead.$$childHead.$$childTail.$$childHead;
+        console.log(circleScope);
+        expect(circleScope.circle).toBeDefined();
+        expect(circleScope.circle.getCenter().toUrlValue()).toEqual('32.874692,-117.232332');
+        expect(circleScope.circle.radius).toEqual(200);
+    });
 
-        // var testDiv = document.getElementById("testDiv");
-        // testDiv.parentNode.removeChild(testDiv);
-        // scope.$destroy();
+    it('should delete a circle within a collection', function(){
+        scope.circles = [{center: {lat: 32.872113, lng: -117.241011}, radius: 300}, {center: {lat: 32.873827, lng: -117.226570}, radius: 500}];
+
+        createElem('<my-map center="center" zoom="zoom" options="mapOpt"><my-circle ng-repeat="circle in circles track by $index" center="circle.center" radius="circle.radius"></my-circle></my-map>');
+
+        scope.circles.pop();
+        scope.$digest();
+
+        var circleScope = scope.$$childHead.$$childHead.$$childTail.$$childHead;
+        console.log(circleScope);
+        expect(circleScope.circle).toBeDefined();
+        expect(circleScope.circle.getCenter().toUrlValue()).toEqual('32.872113,-117.241011');
+        expect(circleScope.circle.radius).toEqual(300);
     });
 });
