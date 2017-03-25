@@ -65,11 +65,10 @@ describe('testing map directives', function() {
     it('should change map center', function() {
         createElem('<my-map center="center" zoom="zoom" options="mapOpt"></my-map>');
 
-        var mapScope = scope.$$childHead;
-        mapScope.$digest();
-        mapScope.center = scope.newCenter;
+        scope.$digest();
+        scope.center = scope.newCenter;
 
-        mapScope.$digest();
+        scope.$digest();
         expect(scope.map).toBeDefined();
         expect(scope.map.getCenter().toUrlValue()).toEqual('32.880951,-117.25');
     });
@@ -77,11 +76,10 @@ describe('testing map directives', function() {
     it('should change map zoom', function() {
         createElem('<my-map center="center" zoom="zoom" options="mapOpt"></my-map>');
 
-        var mapScope = scope.$$childHead;
-        mapScope.$digest();
-        mapScope.zoom = scope.newZoom;
+        scope.$digest();
+        scope.zoom = scope.newZoom;
 
-        mapScope.$digest();
+        scope.$digest();
         expect(scope.map).toBeDefined();
         expect(scope.map.zoom).toEqual(9);
     });
@@ -89,11 +87,10 @@ describe('testing map directives', function() {
     it('should change map options', function() {
         createElem('<my-map center="center" zoom="zoom" options="mapOpt"></my-map>');
 
-        var mapScope = scope.$$childHead;
-        mapScope.$digest();
-        mapScope.options = scope.newOpt;
+        scope.$digest();
+        scope.mapOpt = scope.newOpt;
 
-        mapScope.$digest();
+        scope.$digest();
         expect(scope.map).toBeDefined();
         expect(scope.map.draggable).toEqual(false);
     });
@@ -151,11 +148,11 @@ describe('testing map directives', function() {
         createElem('<my-map center="center" zoom="zoom" options="mapOpt"><my-marker id="marker1" position="markerPos" draggable="draggable" info="\'This is a marker\'"></my-marker></my-map>');
 
         var markerScope = scope.$$childTail.$$childHead.$$childHead;
-        markerScope.$digest();
+        scope.$digest();
 
-        markerScope.position = scope.newCenter;
+        scope.markerPos = scope.newCenter;
 
-        markerScope.$digest();
+        scope.$digest();
         expect(markerScope.marker).toBeDefined();
         expect(markerScope.marker.getPosition().toUrlValue()).toEqual('32.880951,-117.25');
     });
@@ -167,11 +164,11 @@ describe('testing map directives', function() {
         createElem('<my-map center="center" zoom="zoom" options="mapOpt"><my-marker id="marker1" position="markerPos" draggable="draggable" info="\'This is a marker\'"></my-marker></my-map>');
 
         var markerScope = scope.$$childTail.$$childHead.$$childHead;
-        markerScope.$digest();
+        scope.$digest();
 
-        markerScope.draggable = false;
+        scope.draggable = false;
 
-        markerScope.$digest();
+        scope.$digest();
         expect(markerScope.marker).toBeDefined();
         expect(markerScope.marker.draggable).toEqual(false);
     });
@@ -192,18 +189,19 @@ describe('testing map directives', function() {
         expect(markerScope.marker.icon).toEqual('http://image.flaticon.com/icons/png/128/91/91484.png');
     });
 
-    it('should change marker icon', function(){
+    it('should change marker info', function(){
         scope.markerPos = scope.mapPos;
         scope.draggable = true;
+        scope.info = 'This is a marker';
 
-        createElem('<my-map center="center" zoom="zoom" options="mapOpt"><my-marker id="marker1" position="markerPos" draggable="draggable" info="\'This is a marker\'"></my-marker></my-map>');
+        createElem('<my-map center="center" zoom="zoom" options="mapOpt"><my-marker id="marker1" position="markerPos" draggable="draggable" info="info"></my-marker></my-map>');
 
         var markerScope = scope.$$childTail.$$childHead.$$childHead;
-        markerScope.$digest();
+        scope.$digest();
 
-        markerScope.info = 'This is new info';
+        scope.info = 'This is new info';
 
-        markerScope.$digest();
+        scope.$digest();
         expect(markerScope.marker).toBeDefined();
         expect(markerScope.marker._infoWin.content).toEqual('This is new info');
     });
@@ -337,11 +335,12 @@ describe('testing map directives', function() {
         expect(markerScope.marker.zIndex).toEqual(10);
     });
 
-    it('should change marker anchorPoint', function(){
+    it('should change marker options', function(){
         scope.markerPos = scope.mapPos;
         scope.draggable = true;
 
         createElem('<my-map center="center" zoom="zoom" options="mapOpt"><my-marker id="marker1" position="markerPos" draggable="draggable" info="\'This is a marker\'"></my-marker></my-map>');
+
 
         var markerScope = scope.$$childTail.$$childHead.$$childHead;
         markerScope.$digest();
@@ -357,6 +356,7 @@ describe('testing map directives', function() {
         scope.markers = [{lat: 32.878665, lng: -117.240544}, {lat: 32.881143, lng: -117.237379}, {lat: 32.881810, lng: -117.233517}];
 
         createElem('<my-map center="center" zoom="zoom" options="mapOpt"><my-marker ng-repeat="marker in markers track by $index" position="marker"></my-marker></my-map>');
+        scope.$digest();
 
         scope.markers.push({lat: 32.884115, lng: -117.229351});
         scope.$digest();
@@ -370,6 +370,7 @@ describe('testing map directives', function() {
         scope.markers = [{lat: 32.878665, lng: -117.240544}, {lat: 32.881143, lng: -117.237379}, {lat: 32.881810, lng: -117.233517}];
 
         createElem('<my-map center="center" zoom="zoom" options="mapOpt"><my-marker ng-repeat="marker in markers track by $index" position="marker"></my-marker></my-map>');
+        scope.$digest();
 
         scope.markers.pop();
         scope.$digest();
@@ -412,11 +413,11 @@ describe('testing map directives', function() {
         createElem('<my-map center="center" zoom="zoom" options="mapOpt"><my-polyline id="polyline1" path="line"></my-polyline></my-map>');
 
         var polylineScope = scope.$$childTail.$$childHead.$$childHead;
-        polylineScope.$digest();
+        scope.$digest();
 
-        polylineScope.path = [scope.mapPos, {lat: 32.886325, lng: -117.239278 }, scope.newCenter];
+        scope.line = [scope.mapPos, {lat: 32.886325, lng: -117.239278 }, scope.newCenter];
 
-        polylineScope.$digest();
+        scope.$digest();
         expect(polylineScope.polyline).toBeDefined();
         expect(polylineScope.polyline.getPath().b[0].toUrlValue()).toEqual('32.880951,-117.233827');
         expect(polylineScope.polyline.getPath().b[1].toUrlValue()).toEqual('32.886325,-117.239278');
@@ -453,7 +454,7 @@ describe('testing map directives', function() {
         expect(polylineScope.polyline.editable).toEqual(false);
     });
 
-    it('should change polyline editable', function(){
+    it('should change polyline visible', function(){
         scope.line = [scope.mapPos, {lat: 32.886325, lng: -117.239278 }];
 
         createElem('<my-map center="center" zoom="zoom" options="mapOpt"><my-polyline id="polyline1" path="line"></my-polyline></my-map>');
@@ -468,7 +469,7 @@ describe('testing map directives', function() {
         expect(polylineScope.polyline.visible).toEqual(false);
     });
 
-    it('should change polyline strokeColor', function(){
+    it('should change polyline options', function(){
         scope.line = [scope.mapPos, {lat: 32.886325, lng: -117.239278 }];
 
         createElem('<my-map center="center" zoom="zoom" options="mapOpt"><my-polyline id="polyline1" path="line"></my-polyline></my-map>');
@@ -546,11 +547,11 @@ describe('testing map directives', function() {
         createElem('<my-map center="center" zoom="zoom" options="mapOpt"><my-polygon id="polygon1" paths="triangle"></my-polygon></my-map>');
 
         var polygonScope = scope.$$childTail.$$childHead.$$childHead;
-        polygonScope.$digest();
+        scope.$digest();
 
-        polygonScope.paths = [scope.mapPos, {lat: 32.877880, lng: -117.237214 }, scope.newCenter];
+        scope.triangle = [scope.mapPos, {lat: 32.877880, lng: -117.237214 }, scope.newCenter];
 
-        polygonScope.$digest();
+        scope.$digest();
         expect(polygonScope.polygon).toBeDefined();
         expect(polygonScope.polygon.getPaths().getArray()[0].b[0].toUrlValue()).toEqual('32.880951,-117.233827');
         expect(polygonScope.polygon.getPaths().getArray()[0].b[1].toUrlValue()).toEqual('32.87788,-117.237214');
@@ -602,7 +603,7 @@ describe('testing map directives', function() {
         expect(polygonScope.polygon.visible).toEqual(false);
     });
 
-    it('should create polygon strokeColor', function(){
+    it('should create polygon options', function(){
         scope.triangle = [scope.mapPos, {lat: 32.877880, lng: -117.237214 }, {lat: 32.875468, lng: -117.232348 }];
 
         createElem('<my-map center="center" zoom="zoom" options="mapOpt"><my-polygon id="polygon1" paths="triangle"></my-polygon></my-map>');
@@ -678,11 +679,11 @@ describe('testing map directives', function() {
         createElem('<my-map center="center" zoom="zoom" options="mapOpt"><my-rectangle id="rectangle1" bounds="rectangle" options="{draggable: true}"></my-rectangle></my-map>');
 
         var rectScope = scope.$$childTail.$$childHead.$$childHead;
-        rectScope.$digest();
+        scope.$digest();
 
-        rectScope.bounds = {north: 32.882937, south: 32.878531, east: -117.222145, west: -117.239278};
+        scope.rectangle = {north: 32.882937, south: 32.878531, east: -117.222145, west: -117.239278};
 
-        rectScope.$digest();
+        scope.$digest();
         expect(rectScope.rectangle).toBeDefined();
         expect(rectScope.rectangle.getBounds().toUrlValue()).toEqual('32.878531,-117.239278,32.882937,-117.222145');
     });
@@ -732,7 +733,7 @@ describe('testing map directives', function() {
         expect(rectScope.rectangle.visible).toEqual(false);
     });
 
-    it('should change rectangle strokeColor', function(){
+    it('should change rectangle options', function(){
         scope.rectangle = {north: 32.882937, south: 32.878531, east: -117.222145, west: -117.225922};
 
         createElem('<my-map center="center" zoom="zoom" options="mapOpt"><my-rectangle id="rectangle1" bounds="rectangle" options="{draggable: true}"></my-rectangle></my-map>');
@@ -803,10 +804,10 @@ describe('testing map directives', function() {
         createElem('<my-map center="center" zoom="zoom" options="mapOpt"><my-circle id="circle1" center="mapPos" radius="1000" options="{editable: true}"></my-circle></my-map>');
 
         var circleScope = scope.$$childTail.$$childHead.$$childHead;
-        circleScope.$digest();
-        circleScope.center = scope.newCenter;
+        scope.$digest();
+        scope.mapPos = scope.newCenter;
 
-        circleScope.$digest();
+        scope.$digest();
         expect(circleScope.circle).toBeDefined();
         expect(circleScope.circle.getCenter().toUrlValue()).toEqual('32.880951,-117.25');
     });
@@ -859,7 +860,7 @@ describe('testing map directives', function() {
         expect(circleScope.circle.visible).toEqual(false);
     });
 
-    it('should change circle strokeColor', function(){
+    it('should change circle options', function(){
         createElem('<my-map center="center" zoom="zoom" options="mapOpt"><my-circle id="circle1" center="mapPos" radius="1000" options="{editable: true}"></my-circle></my-map>');
 
         var circleScope = scope.$$childTail.$$childHead.$$childHead;
